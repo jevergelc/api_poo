@@ -1,0 +1,37 @@
+[
+  {
+    "id": "p1",
+    "name": "Laptop Lenovo",
+    "price": 3500000,
+    "stock": 10,
+    "active": true
+  },
+  {
+    "id": "p2",
+    "name": "Mouse inalámbrico",
+    "price": 85000,
+    "stock": 25,
+    "active": true
+  },
+  {
+    "id": "210288d5-00d6-4c06-8475-ea6af948493a",
+    "name": "Monitor Samsung 24 pulgadas",
+    "price": 850000,
+    "stock": 10,
+    "active": true
+  },
+  {
+    "id": "d127e96a-deb9-4680-af31-f1f0da25806f",
+    "name": "Calculadora",
+    "price": 150000,
+    "stock": 100,
+    "active": true
+  },
+  {
+    "id": "d07d4a00-18d6-491a-9b98-172455445c97",
+    "name": "keyboard",
+    "price": 90000,
+    "stock": 1,
+    "active": true
+  }
+]
