@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "id": "hist-001",
+    "titulo": "Una nueva oportunidad para sonreír",
+    "autor": "Fundación Juan Pablo II",
+    "contenido": "Doña Elvira llegó a la fundación buscando compañía y apoyo. Con el paso de los meses participó en talleres, compartió con otros adultos mayores y recuperó la alegría de sentirse escuchada y acompañada.",
+    "imagen": "https://example.com/imagenes/historia-001.jpg",
+    "active": true,
+    "createdAt": "2026-05-01T10:00:00.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": "hist-002",
+    "titulo": "Volver a creer en sí mismo",
+    "autor": "Equipo Psicosocial",
+    "contenido": "Don Carlos atravesó una etapa difícil de soledad. Gracias al acompañamiento emocional y a las actividades recreativas, empezó a participar nuevamente en comunidad y a fortalecer su autoestima.",
+    "imagen": "https://example.com/imagenes/historia-002.jpg",
+    "active": true,
+    "createdAt": "2026-05-02T11:30:00.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": "hist-003",
+    "titulo": "Tejiendo recuerdos y amistad",
+    "autor": "Programa de Bienestar",
+    "contenido": "En el taller de manualidades, varias personas mayores encontraron un espacio para crear, conversar y recordar momentos importantes de sus vidas. Lo que inició como una actividad terminó convirtiéndose en una red de amistad.",
+    "imagen": "https://example.com/imagenes/historia-003.jpg",
+    "active": true,
+    "createdAt": "2026-05-03T09:15:00.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": "hist-004",
+    "titulo": "Un almuerzo que se convirtió en familia",
+    "autor": "Área Social",
+    "contenido": "A través de las jornadas comunitarias de alimentación, muchos abuelitos no solo reciben un plato de comida, sino también conversación, afecto y un espacio seguro donde compartir con otros.",
+    "imagen": "https://example.com/imagenes/historia-004.jpg",
+    "active": true,
+    "createdAt": "2026-05-04T14:20:00.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": "hist-005",
+    "titulo": "El poder de ser escuchados",
+    "autor": "Fundación Juan Pablo II",
+    "contenido": "Durante las jornadas de escucha activa, varios beneficiarios expresaron sus historias de vida, sus temores y sus sueños. Este espacio fortaleció su confianza y les permitió sentirse valorados.",
+    "imagen": "https://example.com/imagenes/historia-005.jpg",
+    "active": true,
+    "createdAt": "2026-05-05T08:45:00.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": "hist-006",
+    "titulo": "Pequeños cuidados, grandes cambios",
+    "autor": "Equipo de Salud",
+    "contenido": "Con seguimiento básico de salud, hábitos de autocuidado y orientación permanente, varios adultos mayores lograron mejorar su rutina diaria y sentirse con más energía para participar en las actividades.",
+    "imagen": "https://example.com/imagenes/historia-006.jpg",
+    "active": true,
+    "createdAt": "2026-05-06T16:10:00.000Z",
+    "updatedAt": null
+  }
+]
