@@ -209,7 +209,7 @@ class GestorAutenticacion {
         <form id="loginForm" novalidate>
           <div class="modal-campo">
             <label for="loginCorreo">Correo electrónico</label>
-            <input id="loginCorreo" type="email" placeholder="admin@mail.com" required />
+            <input id="loginCorreo" type="email" placeholder="" required />
           </div>
           <div class="modal-campo">
             <label for="loginContrasena">Contraseña</label>
