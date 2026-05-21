@@ -4,8 +4,16 @@
 const fs = require("fs").promises;
 
 async function readJson(filePath) {
-  const content = await fs.readFile(filePath, "utf-8");
-  return JSON.parse(content || "[]");
+  try {
+    const content = await fs.readFile(filePath, "utf-8");
+    return JSON.parse(content || "[]");
+  } catch (err) {
+    if (err.code === "ENOENT") {
+      await writeJson(filePath, []);
+      return [];
+    }
+    throw err;
+  }
 }
 
 async function writeJson(filePath, data) {
