@@ -100,7 +100,9 @@ class GestorAutenticacion {
     const item = document.createElement('li');
     item.className = 'nav-item nav-item--sesion';
     item.id        = 'itemSesion';
-    menu.appendChild(item);
+    const cta = menu.querySelector('.nav-item--cta');
+    if (cta) menu.insertBefore(item, cta);
+    else     menu.appendChild(item);
 
     this._actualizarBotonSesion();
   }

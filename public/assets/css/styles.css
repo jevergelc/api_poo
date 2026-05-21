@@ -557,6 +557,14 @@ body {
     justify-content: center;
     border-radius: 10px;
   }
+
+  .nav-item--sesion {
+    margin-left: 0;
+    padding-left: 16px;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 8px;
+  }
 }
 
 
@@ -2147,12 +2155,33 @@ body {
 }
 
 /* ===== BOTÓN SESIÓN EN NAVBAR (compartido) ===== */
-.nav-sesion-entrar {
-  background: #1a6e1a !important; color: #fff !important;
-  padding: 6px 14px !important; border-radius: 8px;
-  display: flex; align-items: center; gap: 6px;
+.nav-item--sesion {
+  margin-left: auto;
+  padding-left: 12px;
+  border-left: 1px solid rgba(255,255,255,0.15);
 }
-.nav-sesion-salir { color: #c0392b !important; display: flex; align-items: center; gap: 6px; }
+.nav-sesion-entrar {
+  background: rgba(255,255,255,0.12) !important;
+  color: #fff !important;
+  padding: 7px 16px !important;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  display: flex; align-items: center; gap: 7px;
+  font-weight: 700 !important;
+  transition: background .2s, transform .2s !important;
+  white-space: nowrap;
+}
+.nav-sesion-entrar:hover {
+  background: rgba(255,255,255,0.22) !important;
+  transform: translateY(-1px) !important;
+}
+.nav-sesion-salir {
+  color: #ff8a8a !important;
+  display: flex; align-items: center; gap: 6px;
+  font-weight: 700 !important;
+  white-space: nowrap;
+}
+.nav-sesion-salir:hover { color: #ffc0c0 !important; }
 
 /* ===== MODAL COMPARTIDO (login + historias) ===== */
 .modal-overlay {
