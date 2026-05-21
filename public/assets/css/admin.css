@@ -1,0 +1,252 @@
+/* =====================================================
+   admin.css — Estilos del Panel de Administración
+   Fundación Renacer Vida Feliz
+===================================================== */
+
+/* ===== LAYOUT GENERAL ===== */
+body { background: #f0f4f0; }
+
+/* ===== CABECERA ===== */
+.admin-header {
+  background: linear-gradient(135deg, #152844 0%, #1a3a5c 100%);
+  color: #fff;
+  padding: 0;
+}
+.admin-header__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.admin-header__brand { display: flex; align-items: center; gap: 14px; }
+.admin-header__brand img { height: 48px; width: auto; }
+.admin-header__brand h1 { font-size: 1.15rem; font-weight: 800; margin: 0; }
+.admin-header__brand p  { font-size: 0.8rem; opacity: .7; margin: 2px 0 0; }
+.admin-header__actions  { display: flex; gap: 10px; align-items: center; }
+
+/* ===== BOTONES DE CABECERA ===== */
+.admin-btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: all .2s;
+}
+.admin-btn--outline {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,.35);
+}
+.admin-btn--outline:hover { background: rgba(255,255,255,.12); }
+.admin-btn--danger        { background: #c0392b; color: #fff; }
+.admin-btn--danger:hover  { background: #e74c3c; }
+.admin-btn--home {
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,.2);
+}
+.admin-btn--home:hover { background: rgba(255,255,255,.22); }
+
+/* ===== ACCESO DENEGADO ===== */
+.admin-lock {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 16px;
+  padding: 40px 20px;
+}
+.admin-lock i  { font-size: 4rem; color: #c0392b; }
+.admin-lock h2 { font-size: 1.6rem; color: #1a3a1a; }
+.admin-lock p  { color: #666; max-width: 380px; }
+
+/* ===== DASHBOARD ===== */
+.admin-main { max-width: 1280px; margin: 0 auto; padding: 28px 20px 60px; }
+
+/* ===== TARJETAS DE RESUMEN ===== */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 22px 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.stat-card__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.stat-card__icon--verde   { background: #e8f5e9; color: #1a6e1a; }
+.stat-card__icon--azul    { background: #e3f2fd; color: #1565c0; }
+.stat-card__icon--naranja { background: #fff3e0; color: #e65100; }
+.stat-card__icon--morado  { background: #f3e5f5; color: #6a1b9a; }
+.stat-card__num   { font-size: 2rem; font-weight: 800; color: #1a3a1a; line-height: 1; }
+.stat-card__label { font-size: 0.83rem; color: #666; margin-top: 4px; }
+
+/* ===== TABS DE NAVEGACIÓN ===== */
+.admin-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #dde8dd;
+  padding-bottom: 2px;
+}
+.tab-btn {
+  padding: 9px 20px;
+  border-radius: 8px 8px 0 0;
+  border: none;
+  background: transparent;
+  color: #555;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: all .2s;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+.tab-btn:hover  { background: #f0f4f0; color: #1a6e1a; }
+.tab-btn.activo { color: #1a6e1a; border-bottom-color: #1a6e1a; background: #fff; }
+.tab-badge {
+  background: #1a6e1a;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  padding: 1px 7px;
+  font-weight: 800;
+}
+.tab-badge--vacio { background: #ccc; }
+
+/* ===== PANELES DE CONTENIDO ===== */
+.tab-panel        { display: none; }
+.tab-panel.activo { display: block; }
+
+/* ===== TABLA ===== */
+.admin-table-wrap {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+}
+.admin-table-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.admin-table-header h3   { font-size: 1.05rem; font-weight: 800; color: #1a3a1a; margin: 0; }
+.admin-table-header span { font-size: 0.85rem; color: #888; }
+.admin-table-loading     { padding: 40px; text-align: center; color: #888; }
+.admin-table-empty       { padding: 40px; text-align: center; color: #aaa; }
+.admin-table-empty i     { font-size: 2.5rem; display: block; margin-bottom: 10px; }
+
+table           { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+thead           { background: #f8faf8; }
+thead th {
+  padding: 11px 14px;
+  text-align: left;
+  font-weight: 800;
+  color: #2c4a4a;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  border-bottom: 1px solid #e8f0e8;
+}
+tbody tr            { border-bottom: 1px solid #f0f4f0; transition: background .15s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover      { background: #f8fbf8; }
+tbody td            { padding: 10px 14px; color: #333; vertical-align: top; }
+
+.td-fecha { color: #888; font-size: 0.8rem; white-space: nowrap; }
+.td-tag {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.td-tag--inscripcion { background: #e8f5e9; color: #1a6e1a; }
+.td-tag--atencion    { background: #e3f2fd; color: #1565c0; }
+.td-tag--especie     { background: #fff3e0; color: #e65100; }
+.td-tag--economica   { background: #f3e5f5; color: #6a1b9a; }
+.td-tag--ambas       { background: #fce4ec; color: #880e4f; }
+
+/* ===== HISTORIAS EN ADMIN ===== */
+.hist-admin-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+}
+.hist-action-btn {
+  padding: 5px 12px;
+  border-radius: 7px;
+  border: none;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all .18s;
+}
+.hist-action-btn--edit         { background: #e8f5e9; color: #1a6e1a; }
+.hist-action-btn--edit:hover   { background: #c8e6c8; }
+.hist-action-btn--delete       { background: #fdf0ef; color: #c0392b; }
+.hist-action-btn--delete:hover { background: #fdd; }
+.hist-nueva-btn {
+  background: linear-gradient(135deg, #1a6e1a, #237823);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 20px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(26,110,26,.22);
+  transition: all .22s;
+}
+.hist-nueva-btn:hover { transform: translateY(-1px); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  table { display: block; overflow-x: auto; }
+  .admin-header__brand h1 { font-size: 1rem; }
+}
