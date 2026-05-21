@@ -260,6 +260,33 @@ router.post("/contacto", contacto.create);
  */
 router.get("/contacto", requireApiKey, requireRole("admin"), contacto.list);
 
+/**
+ * Obtener mensaje de contacto por ID
+ *
+ * Acceso: admin
+ * Método: GET
+ * Endpoint: /contacto/:id
+ */
+router.get("/contacto/:id", requireApiKey, requireRole("admin"), contacto.getById);
+
+/**
+ * Actualizar mensaje de contacto
+ *
+ * Acceso: admin
+ * Método: PATCH
+ * Endpoint: /contacto/:id
+ */
+router.patch("/contacto/:id", requireApiKey, requireRole("admin"), contacto.update);
+
+/**
+ * Eliminar mensaje de contacto
+ *
+ * Acceso: admin
+ * Método: DELETE
+ * Endpoint: /contacto/:id
+ */
+router.delete("/contacto/:id", requireApiKey, requireRole("admin"), contacto.remove);
+
 /* =========================================================
    INSCRIPCIONES
 ========================================================= */
@@ -281,6 +308,33 @@ router.post("/inscripciones", inscripciones.create);
  * Endpoint: /inscripciones
  */
 router.get("/inscripciones", requireApiKey, requireRole("admin"), inscripciones.list);
+
+/**
+ * Obtener inscripción por ID
+ *
+ * Acceso: admin
+ * Método: GET
+ * Endpoint: /inscripciones/:id
+ */
+router.get("/inscripciones/:id", requireApiKey, requireRole("admin"), inscripciones.getById);
+
+/**
+ * Actualizar inscripción
+ *
+ * Acceso: admin
+ * Método: PATCH
+ * Endpoint: /inscripciones/:id
+ */
+router.patch("/inscripciones/:id", requireApiKey, requireRole("admin"), inscripciones.update);
+
+/**
+ * Eliminar inscripción
+ *
+ * Acceso: admin
+ * Método: DELETE
+ * Endpoint: /inscripciones/:id
+ */
+router.delete("/inscripciones/:id", requireApiKey, requireRole("admin"), inscripciones.remove);
 
 /* =========================================================
    VOLUNTARIADOS
@@ -304,6 +358,33 @@ router.post("/voluntariados", voluntariados.create);
  */
 router.get("/voluntariados", requireApiKey, requireRole("admin"), voluntariados.list);
 
+/**
+ * Obtener solicitud de voluntariado por ID
+ *
+ * Acceso: admin
+ * Método: GET
+ * Endpoint: /voluntariados/:id
+ */
+router.get("/voluntariados/:id", requireApiKey, requireRole("admin"), voluntariados.getById);
+
+/**
+ * Actualizar solicitud de voluntariado
+ *
+ * Acceso: admin
+ * Método: PATCH
+ * Endpoint: /voluntariados/:id
+ */
+router.patch("/voluntariados/:id", requireApiKey, requireRole("admin"), voluntariados.update);
+
+/**
+ * Eliminar solicitud de voluntariado
+ *
+ * Acceso: admin
+ * Método: DELETE
+ * Endpoint: /voluntariados/:id
+ */
+router.delete("/voluntariados/:id", requireApiKey, requireRole("admin"), voluntariados.remove);
+
 /* =========================================================
    DONACIONES
 ========================================================= */
@@ -325,6 +406,33 @@ router.post("/donaciones", donaciones.create);
  * Endpoint: /donaciones
  */
 router.get("/donaciones", requireApiKey, requireRole("admin"), donaciones.list);
+
+/**
+ * Obtener donación por ID
+ *
+ * Acceso: admin
+ * Método: GET
+ * Endpoint: /donaciones/:id
+ */
+router.get("/donaciones/:id", requireApiKey, requireRole("admin"), donaciones.getById);
+
+/**
+ * Actualizar donación
+ *
+ * Acceso: admin
+ * Método: PATCH
+ * Endpoint: /donaciones/:id
+ */
+router.patch("/donaciones/:id", requireApiKey, requireRole("admin"), donaciones.update);
+
+/**
+ * Eliminar donación
+ *
+ * Acceso: admin
+ * Método: DELETE
+ * Endpoint: /donaciones/:id
+ */
+router.delete("/donaciones/:id", requireApiKey, requireRole("admin"), donaciones.remove);
 
 /* =========================================================
    EXPORTACIÓN DEL ROUTER

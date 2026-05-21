@@ -29,6 +29,37 @@ class ContactoRepository {
     await writeJson(this.filePath, contactos);
     return contacto;
   }
+
+  /**
+   * Busca un mensaje de contacto por su id
+   */
+  async findById(id) {
+    const contactos = await this.list();
+    return contactos.find(item => item.id === id) || null;
+  }
+
+  /**
+   * Actualiza un mensaje de contacto existente
+   */
+  async update(id, changes) {
+    const contactos = await this.list();
+    const index = contactos.findIndex(item => item.id === id);
+    if (index === -1) return null;
+    contactos[index] = { ...contactos[index], ...changes, updatedAt: new Date().toISOString() };
+    await writeJson(this.filePath, contactos);
+    return contactos[index];
+  }
+
+  /**
+   * Elimina un mensaje de contacto por su id
+   */
+  async remove(id) {
+    const contactos = await this.list();
+    const contacto = contactos.find(item => item.id === id);
+    if (!contacto) return null;
+    await writeJson(this.filePath, contactos.filter(item => item.id !== id));
+    return contacto;
+  }
 }
 
 module.exports = { ContactoRepository };

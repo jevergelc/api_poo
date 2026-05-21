@@ -22,6 +22,45 @@ class ContactoService {
   }
 
   /**
+   * Busca un mensaje de contacto por id
+   */
+  async getById(id) {
+    const contacto = await this.repo.findById(id);
+    if (!contacto) {
+      throw new HttpError(404, "NOT_FOUND", "Mensaje de contacto no encontrado");
+    }
+    return contacto;
+  }
+
+  /**
+   * Actualiza los datos de un mensaje de contacto existente
+   */
+  async update(id, dto) {
+    const current = await this.repo.findById(id);
+    if (!current) {
+      throw new HttpError(404, "NOT_FOUND", "Mensaje de contacto no encontrado");
+    }
+    const changes = {};
+    if (dto.nombre  !== undefined) changes.nombre  = String(dto.nombre).trim();
+    if (dto.correo  !== undefined) changes.correo  = String(dto.correo).trim();
+    if (dto.telefono !== undefined) changes.telefono = String(dto.telefono).trim();
+    if (dto.asunto  !== undefined) changes.asunto  = String(dto.asunto).trim();
+    if (dto.mensaje !== undefined) changes.mensaje = String(dto.mensaje).trim();
+    return await this.repo.update(id, changes);
+  }
+
+  /**
+   * Elimina un mensaje de contacto
+   */
+  async remove(id) {
+    const deleted = await this.repo.remove(id);
+    if (!deleted) {
+      throw new HttpError(404, "NOT_FOUND", "Mensaje de contacto no encontrado");
+    }
+    return { message: "Mensaje de contacto eliminado correctamente" };
+  }
+
+  /**
    * Valida y registra un nuevo mensaje de contacto
    */
   async create(dto) {

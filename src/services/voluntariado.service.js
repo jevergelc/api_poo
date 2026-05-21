@@ -22,6 +22,44 @@ class VoluntariadoService {
   }
 
   /**
+   * Busca una solicitud de voluntariado por id
+   */
+  async getById(id) {
+    const voluntariado = await this.repo.findById(id);
+    if (!voluntariado) {
+      throw new HttpError(404, "NOT_FOUND", "Solicitud de voluntariado no encontrada");
+    }
+    return voluntariado;
+  }
+
+  /**
+   * Actualiza los datos de una solicitud de voluntariado existente
+   */
+  async update(id, dto) {
+    const current = await this.repo.findById(id);
+    if (!current) {
+      throw new HttpError(404, "NOT_FOUND", "Solicitud de voluntariado no encontrada");
+    }
+    const changes = {};
+    if (dto.nombre   !== undefined) changes.nombre   = String(dto.nombre).trim();
+    if (dto.edad     !== undefined) changes.edad     = String(dto.edad).trim();
+    if (dto.telefono !== undefined) changes.telefono = String(dto.telefono).trim();
+    if (dto.correo   !== undefined) changes.correo   = String(dto.correo).trim();
+    return await this.repo.update(id, changes);
+  }
+
+  /**
+   * Elimina una solicitud de voluntariado
+   */
+  async remove(id) {
+    const deleted = await this.repo.remove(id);
+    if (!deleted) {
+      throw new HttpError(404, "NOT_FOUND", "Solicitud de voluntariado no encontrada");
+    }
+    return { message: "Solicitud de voluntariado eliminada correctamente" };
+  }
+
+  /**
    * Valida y registra una nueva solicitud de voluntariado
    */
   async create(dto) {

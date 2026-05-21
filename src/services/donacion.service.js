@@ -22,6 +22,46 @@ class DonacionService {
   }
 
   /**
+   * Busca una donación por id
+   */
+  async getById(id) {
+    const donacion = await this.repo.findById(id);
+    if (!donacion) {
+      throw new HttpError(404, "NOT_FOUND", "Donación no encontrada");
+    }
+    return donacion;
+  }
+
+  /**
+   * Actualiza los datos de una donación existente
+   */
+  async update(id, dto) {
+    const current = await this.repo.findById(id);
+    if (!current) {
+      throw new HttpError(404, "NOT_FOUND", "Donación no encontrada");
+    }
+    const changes = {};
+    if (dto.nombre              !== undefined) changes.nombre              = String(dto.nombre).trim();
+    if (dto.telefono            !== undefined) changes.telefono            = String(dto.telefono).trim();
+    if (dto.correo              !== undefined) changes.correo              = String(dto.correo).trim();
+    if (dto.tipo_donacion       !== undefined) changes.tipo_donacion       = String(dto.tipo_donacion).trim();
+    if (dto.descripcion_especie !== undefined) changes.descripcion_especie = String(dto.descripcion_especie).trim();
+    if (dto.monto               !== undefined) changes.monto               = String(dto.monto).trim();
+    return await this.repo.update(id, changes);
+  }
+
+  /**
+   * Elimina una donación
+   */
+  async remove(id) {
+    const deleted = await this.repo.remove(id);
+    if (!deleted) {
+      throw new HttpError(404, "NOT_FOUND", "Donación no encontrada");
+    }
+    return { message: "Donación eliminada correctamente" };
+  }
+
+  /**
    * Valida y registra una nueva oferta de donación
    */
   async create(dto) {

@@ -30,6 +30,37 @@ class InscripcionRepository {
     await writeJson(this.filePath, inscripciones);
     return inscripcion;
   }
+
+  /**
+   * Busca una inscripción por su id
+   */
+  async findById(id) {
+    const inscripciones = await this.list();
+    return inscripciones.find(item => item.id === id) || null;
+  }
+
+  /**
+   * Actualiza una inscripción existente
+   */
+  async update(id, changes) {
+    const inscripciones = await this.list();
+    const index = inscripciones.findIndex(item => item.id === id);
+    if (index === -1) return null;
+    inscripciones[index] = { ...inscripciones[index], ...changes, updatedAt: new Date().toISOString() };
+    await writeJson(this.filePath, inscripciones);
+    return inscripciones[index];
+  }
+
+  /**
+   * Elimina una inscripción por su id
+   */
+  async remove(id) {
+    const inscripciones = await this.list();
+    const inscripcion = inscripciones.find(item => item.id === id);
+    if (!inscripcion) return null;
+    await writeJson(this.filePath, inscripciones.filter(item => item.id !== id));
+    return inscripcion;
+  }
 }
 
 module.exports = { InscripcionRepository };

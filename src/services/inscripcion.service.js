@@ -23,6 +23,54 @@ class InscripcionService {
   }
 
   /**
+   * Busca una inscripción por id
+   */
+  async getById(id) {
+    const inscripcion = await this.repo.findById(id);
+    if (!inscripcion) {
+      throw new HttpError(404, "NOT_FOUND", "Inscripción no encontrada");
+    }
+    return inscripcion;
+  }
+
+  /**
+   * Actualiza los campos de una inscripción existente (cualquier tipo)
+   */
+  async update(id, dto) {
+    const current = await this.repo.findById(id);
+    if (!current) {
+      throw new HttpError(404, "NOT_FOUND", "Inscripción no encontrada");
+    }
+    const fields = [
+      "nombre","documento","nacimiento","genero","telefono","correo",
+      "direccion","salud","acompanante",
+      "nombre_mayor","edad","documento_mayor","genero_mayor",
+      "movilidad","cuidador","parentesco","atencion_tipo","observaciones"
+    ];
+    const changes = {};
+    for (const field of fields) {
+      if (dto[field] !== undefined) {
+        changes[field] = Array.isArray(dto[field]) ? dto[field] : String(dto[field]).trim();
+      }
+    }
+    if (dto.programas !== undefined) {
+      changes.programas = Array.isArray(dto.programas) ? dto.programas : [];
+    }
+    return await this.repo.update(id, changes);
+  }
+
+  /**
+   * Elimina una inscripción
+   */
+  async remove(id) {
+    const deleted = await this.repo.remove(id);
+    if (!deleted) {
+      throw new HttpError(404, "NOT_FOUND", "Inscripción no encontrada");
+    }
+    return { message: "Inscripción eliminada correctamente" };
+  }
+
+  /**
    * Valida y registra una nueva inscripción.
    * El campo tipo indica si es 'inscripcion' o 'atencion'.
    */
