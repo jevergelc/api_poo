@@ -66,6 +66,11 @@ class GestorAutenticacion {
 
     this._actualizarBotonSesion();
     if (this.alCambiarSesion) this.alCambiarSesion();
+
+    if (user.role === 'admin' && !window.location.pathname.endsWith('admin.html')) {
+      window.location.href = 'admin.html';
+    }
+
     return respuesta;
   }
 

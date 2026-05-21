@@ -140,6 +140,30 @@
     .td-tag--economica   { background: #f3e5f5; color: #6a1b9a; }
     .td-tag--ambas       { background: #fce4ec; color: #880e4f; }
 
+    /* ===== HISTORIAS EN ADMIN ===== */
+    .hist-admin-img {
+      width: 52px; height: 52px; border-radius: 10px;
+      object-fit: cover; display: block;
+    }
+    .hist-action-btn {
+      padding: 5px 12px; border-radius: 7px; border: none;
+      font-family: inherit; font-size: 0.8rem; font-weight: 700;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
+      transition: all .18s;
+    }
+    .hist-action-btn--edit   { background: #e8f5e9; color: #1a6e1a; }
+    .hist-action-btn--edit:hover   { background: #c8e6c8; }
+    .hist-action-btn--delete { background: #fdf0ef; color: #c0392b; }
+    .hist-action-btn--delete:hover { background: #fdd; }
+    .hist-nueva-btn {
+      background: linear-gradient(135deg,#1a6e1a,#237823);
+      color:#fff; border:none; border-radius:10px;
+      padding:9px 20px; font-family:inherit; font-size:0.9rem; font-weight:800;
+      cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+      box-shadow:0 4px 14px rgba(26,110,26,.22); transition:all .22s;
+    }
+    .hist-nueva-btn:hover { transform:translateY(-1px); }
+
     @media (max-width: 768px) {
       table { display: block; overflow-x: auto; }
       .admin-header__brand h1 { font-size: 1rem; }
@@ -220,6 +244,15 @@
           <div class="stat-card__label">Donaciones</div>
         </div>
       </div>
+      <div class="stat-card">
+        <div class="stat-card__icon stat-card__icon--verde">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+        <div>
+          <div class="stat-card__num" id="statHistorias">—</div>
+          <div class="stat-card__label">Historias de vida</div>
+        </div>
+      </div>
     </div>
 
     <!-- Navegación por pestañas -->
@@ -239,6 +272,10 @@
       <button class="tab-btn" data-tab="donaciones">
         <i class="fa-solid fa-gift"></i> Donaciones
         <span class="tab-badge tab-badge--vacio" id="badgeDonaciones">0</span>
+      </button>
+      <button class="tab-btn" data-tab="historias">
+        <i class="fa-solid fa-heart"></i> Historias
+        <span class="tab-badge tab-badge--vacio" id="badgeHistorias">0</span>
       </button>
     </div>
 
@@ -294,7 +331,83 @@
       </div>
     </div>
 
+    <!-- ===== TAB: HISTORIAS ===== -->
+    <div class="tab-panel" id="tab-historias">
+      <div class="admin-table-wrap">
+        <div class="admin-table-header">
+          <h3><i class="fa-solid fa-heart"></i> Historias de Vida</h3>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span id="infoHistorias">Cargando...</span>
+            <button class="hist-nueva-btn" id="btnNuevaHistoriaAdmin">
+              <i class="fa-solid fa-plus"></i> Nueva Historia
+            </button>
+          </div>
+        </div>
+        <div id="tablaHistorias">
+          <div class="admin-table-loading"><i class="fa-solid fa-spinner fa-spin"></i> Cargando...</div>
+        </div>
+      </div>
+    </div>
+
   </main>
+
+  <!-- ===== MODAL: CREAR / EDITAR HISTORIA ===== -->
+  <div class="modal-overlay" id="historiaModal" style="display:none;" role="dialog" aria-modal="true">
+    <div class="modal-caja modal-caja--grande">
+      <button class="modal-cerrar" id="historiaCerrar" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-encabezado">
+        <i class="fa-solid fa-book-open"></i>
+        <h2 id="historiaModalTitulo">Nueva Historia</h2>
+      </div>
+      <div class="modal-grid-campos">
+        <div class="modal-campo">
+          <label for="campTitulo">Nombre / Título *</label>
+          <input id="campTitulo" type="text" placeholder="Nombre de la persona" />
+        </div>
+        <div class="modal-campo">
+          <label for="campAutor">Edad / Autor *</label>
+          <input id="campAutor" type="text" placeholder="Ej: 72 años" />
+        </div>
+        <div class="modal-campo modal-campo--completo">
+          <label for="campImagen">URL o ruta de imagen</label>
+          <input id="campImagen" type="text" placeholder="assets/images/perfil-XX.webp" />
+        </div>
+        <div class="modal-campo modal-campo--completo">
+          <label for="campContenido">Historia *</label>
+          <textarea id="campContenido" rows="5" placeholder="Escribe la historia..."></textarea>
+        </div>
+        <div class="modal-campo modal-campo--completo">
+          <label for="campConsejo">Consejo para los jóvenes</label>
+          <input id="campConsejo" type="text" placeholder="Su consejo de vida..." />
+        </div>
+      </div>
+      <p class="modal-estado" id="historiaModalEstado"></p>
+      <div class="modal-acciones">
+        <button class="modal-btn-principal" id="btnGuardarHistoria">
+          <i class="fa-solid fa-floppy-disk"></i> Guardar
+        </button>
+        <button class="modal-btn-cancelar" id="btnCancelarHistoria">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: CONFIRMAR ELIMINACIÓN ===== -->
+  <div class="modal-overlay" id="eliminarModal" style="display:none;" role="dialog" aria-modal="true">
+    <div class="modal-caja modal-caja--chica">
+      <button class="modal-cerrar" id="eliminarCerrar" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-encabezado modal-encabezado--peligro">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <h2>¿Eliminar historia?</h2>
+        <p>Esta acción no se puede deshacer.</p>
+      </div>
+      <div class="modal-acciones modal-acciones--centradas">
+        <button class="modal-btn-peligro" id="btnConfirmarEliminar">
+          <i class="fa-solid fa-trash"></i> Sí, eliminar
+        </button>
+        <button class="modal-btn-cancelar" id="btnCancelarEliminar">Cancelar</button>
+      </div>
+    </div>
+  </div>
 
   <script src="assets/js/api.js"></script>
   <script>
@@ -355,7 +468,8 @@
         cargarContactos(),
         cargarInscripciones(),
         cargarVoluntariados(),
-        cargarDonaciones()
+        cargarDonaciones(),
+        cargarHistorias()
       ]);
     }
 
@@ -455,6 +569,44 @@
       }
     }
 
+    async function cargarHistorias() {
+      const wrap = document.getElementById('tablaHistorias');
+      const info = document.getElementById('infoHistorias');
+      try {
+        const res  = await api.obtenerHistorias();
+        const data = res.data || [];
+        document.getElementById('statHistorias').textContent = data.length;
+        setBadge('badgeHistorias', data.length);
+        info.textContent = `${data.length} historia(s)`;
+        if (!data.length) { wrap.innerHTML = tablaVacia('heart-crack','Sin historias registradas'); return; }
+        wrap.innerHTML = `<table>
+          <thead><tr>
+            <th>Foto</th><th>Nombre / Título</th><th>Edad / Autor</th><th>Historia</th><th>Consejo</th><th>Activa</th><th>Fecha</th><th>Acciones</th>
+          </tr></thead>
+          <tbody>${data.map(r => `<tr data-id="${r.id}">
+            <td>${r.imagen ? `<img class="hist-admin-img" src="${r.imagen}" alt="" onerror="this.style.display='none'">` : '—'}</td>
+            <td><strong>${r.titulo || '—'}</strong></td>
+            <td>${r.autor || '—'}</td>
+            <td style="max-width:260px;">${(r.contenido||'').substring(0,100)}${r.contenido?.length>100?'…':''}</td>
+            <td style="max-width:180px;">${(r.consejo||'—').substring(0,60)}${(r.consejo||'').length>60?'…':''}</td>
+            <td>${r.active ? '<span class="td-tag td-tag--inscripcion">Sí</span>' : '<span class="td-tag" style="background:#fdd;color:#c0392b">No</span>'}</td>
+            <td class="td-fecha">${fmtFecha(r.createdAt)}</td>
+            <td style="white-space:nowrap">
+              <button class="hist-action-btn hist-action-btn--edit" onclick="abrirEditarHistoria('${r.id}')">
+                <i class="fa-solid fa-pen"></i> Editar
+              </button>
+              <button class="hist-action-btn hist-action-btn--delete" onclick="pedirEliminarHistoria('${r.id}')" style="margin-top:4px">
+                <i class="fa-solid fa-trash"></i> Eliminar
+              </button>
+            </td>
+          </tr>`).join('')}</tbody>
+        </table>`;
+      } catch (e) {
+        wrap.innerHTML = tablaVacia('triangle-exclamation','Error al cargar las historias');
+        info.textContent = 'Error';
+      }
+    }
+
     async function cargarDonaciones() {
       const wrap = document.getElementById('tablaDonaciones');
       const info = document.getElementById('infoDonaciones');
@@ -483,6 +635,114 @@
         info.textContent = 'Error';
       }
     }
+    /* ===== CRUD HISTORIAS ===== */
+    let historiaEditandoId = null;
+    let historiaEliminandoId = null;
+
+    function abrirModalHistoria(titulo) {
+      document.getElementById('historiaModalTitulo').textContent = titulo;
+      document.getElementById('historiaModalEstado').textContent = '';
+      document.getElementById('historiaModal').style.display = 'flex';
+      requestAnimationFrame(() => document.getElementById('historiaModal').classList.add('abierto'));
+    }
+
+    function cerrarModalHistoria() {
+      const m = document.getElementById('historiaModal');
+      m.classList.remove('abierto');
+      setTimeout(() => { m.style.display = 'none'; }, 280);
+      historiaEditandoId = null;
+    }
+
+    function abrirModalEliminar() {
+      document.getElementById('eliminarModal').style.display = 'flex';
+      requestAnimationFrame(() => document.getElementById('eliminarModal').classList.add('abierto'));
+    }
+
+    function cerrarModalEliminar() {
+      const m = document.getElementById('eliminarModal');
+      m.classList.remove('abierto');
+      setTimeout(() => { m.style.display = 'none'; }, 280);
+      historiaEliminandoId = null;
+    }
+
+    document.getElementById('btnNuevaHistoriaAdmin').addEventListener('click', () => {
+      historiaEditandoId = null;
+      document.getElementById('campTitulo').value   = '';
+      document.getElementById('campAutor').value    = '';
+      document.getElementById('campImagen').value   = '';
+      document.getElementById('campContenido').value= '';
+      document.getElementById('campConsejo').value  = '';
+      abrirModalHistoria('Nueva Historia');
+    });
+
+    async function abrirEditarHistoria(id) {
+      try {
+        const res = await api.obtenerHistorias();
+        const h   = (res.data || []).find(x => x.id === id);
+        if (!h) return;
+        historiaEditandoId = id;
+        document.getElementById('campTitulo').value    = h.titulo    || '';
+        document.getElementById('campAutor').value     = h.autor     || '';
+        document.getElementById('campImagen').value    = h.imagen    || '';
+        document.getElementById('campContenido').value = h.contenido || '';
+        document.getElementById('campConsejo').value   = h.consejo   || '';
+        abrirModalHistoria('Editar Historia');
+      } catch (e) { alert('Error al cargar la historia.'); }
+    }
+
+    function pedirEliminarHistoria(id) {
+      historiaEliminandoId = id;
+      abrirModalEliminar();
+    }
+
+    document.getElementById('btnGuardarHistoria').addEventListener('click', async () => {
+      const estado = document.getElementById('historiaModalEstado');
+      const datos  = {
+        titulo:    document.getElementById('campTitulo').value.trim(),
+        autor:     document.getElementById('campAutor').value.trim(),
+        imagen:    document.getElementById('campImagen').value.trim(),
+        contenido: document.getElementById('campContenido').value.trim(),
+        consejo:   document.getElementById('campConsejo').value.trim()
+      };
+      if (!datos.titulo || !datos.autor || !datos.contenido) {
+        estado.textContent = '⚠ Nombre, edad/autor e historia son obligatorios.';
+        return;
+      }
+      estado.textContent = 'Guardando...';
+      try {
+        if (historiaEditandoId) {
+          await api.actualizarHistoria(historiaEditandoId, datos);
+        } else {
+          await api.crearHistoria(datos);
+        }
+        cerrarModalHistoria();
+        await cargarHistorias();
+      } catch (e) {
+        estado.textContent = '⚠ Error al guardar. ' + (e.message || '');
+      }
+    });
+
+    document.getElementById('btnConfirmarEliminar').addEventListener('click', async () => {
+      if (!historiaEliminandoId) return;
+      try {
+        await api.eliminarHistoria(historiaEliminandoId);
+        cerrarModalEliminar();
+        await cargarHistorias();
+      } catch (e) { alert('Error al eliminar.'); }
+    });
+
+    ['historiaCerrar','btnCancelarHistoria'].forEach(id =>
+      document.getElementById(id).addEventListener('click', cerrarModalHistoria));
+    ['eliminarCerrar','btnCancelarEliminar'].forEach(id =>
+      document.getElementById(id).addEventListener('click', cerrarModalEliminar));
+
+    document.getElementById('historiaModal').addEventListener('click', e => {
+      if (e.target.id === 'historiaModal') cerrarModalHistoria();
+    });
+    document.getElementById('eliminarModal').addEventListener('click', e => {
+      if (e.target.id === 'eliminarModal') cerrarModalEliminar();
+    });
+
   </script>
 </body>
 </html>
