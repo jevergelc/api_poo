@@ -96,11 +96,23 @@ class GestorAutenticacion {
   ============================================================ */
 
   /**
+   * Devuelve true si la página actual es el panel de administración.
+   */
+  _enPanelAdmin() {
+    return window.location.pathname.endsWith('admin.html');
+  }
+
+  /**
    * Agrega el ítem de sesión al final del menú de navegación.
+   * En páginas públicas, si el usuario es admin, no se muestra nada.
    */
   _inyectarBotonSesion() {
     const menu = document.getElementById('navMenu');
     if (!menu) return;
+
+    if (this.estaAutenticado() && this.esAdmin() && !this._enPanelAdmin()) {
+      return;
+    }
 
     const item = document.createElement('li');
     item.className = 'nav-item nav-item--sesion';
@@ -121,11 +133,7 @@ class GestorAutenticacion {
 
     if (this.estaAutenticado()) {
       const nombre = this.obtenerNombre() || 'Admin';
-      const esAdmin = this.esAdmin();
       item.innerHTML = `
-        ${esAdmin ? `<a href="admin.html" class="nav-sesion-admin" style="margin-right:8px;">
-          <i class="fa-solid fa-shield-halved"></i> Panel Admin
-        </a>` : ''}
         <a href="#" id="btnCerrarSesion" class="nav-sesion-salir">
           <i class="fa-solid fa-right-from-bracket"></i> Salir (${nombre})
         </a>`;
