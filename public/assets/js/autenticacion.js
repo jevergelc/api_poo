@@ -144,6 +144,12 @@ class GestorAutenticacion {
    * Escucha el envío del formulario de login dentro del modal.
    */
   _escucharFormularioLogin() {
+    document.addEventListener('click', (e) => {
+      const id = e.target.closest('[id]')?.id || e.target.id;
+      if (id === 'loginCerrar' || id === 'btnCancelarLogin') this._cerrarModalLogin();
+      if (e.target.id === 'loginModal') this._cerrarModalLogin();
+    });
+
     document.addEventListener('submit', async (e) => {
       if (e.target.id !== 'loginForm') return;
       e.preventDefault();
@@ -196,10 +202,10 @@ class GestorAutenticacion {
           </div>
           <p class="modal-estado" id="loginEstado"></p>
           <div class="modal-acciones">
-            <button type="submit" id="btnLogin" class="modal-btn modal-btn--primario">
+            <button type="submit" class="modal-btn-principal">
               <i class="fa-solid fa-right-to-bracket"></i> Ingresar
             </button>
-            <button type="button" id="btnCancelarLogin" class="modal-btn modal-btn--secundario">Cancelar</button>
+            <button type="button" id="btnCancelarLogin" class="modal-btn-cancelar">Cancelar</button>
           </div>
         </form>
       </div>`;

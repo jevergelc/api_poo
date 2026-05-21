@@ -2146,3 +2146,95 @@ body {
   display: inline-block;
 }
 
+/* ===== BOTÓN SESIÓN EN NAVBAR (compartido) ===== */
+.nav-sesion-entrar {
+  background: #1a6e1a !important; color: #fff !important;
+  padding: 6px 14px !important; border-radius: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+.nav-sesion-salir { color: #c0392b !important; display: flex; align-items: center; gap: 6px; }
+
+/* ===== MODAL COMPARTIDO (login + historias) ===== */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.6);
+  display: none; align-items: center; justify-content: center;
+  z-index: 9999; padding: 20px;
+  opacity: 0; transition: opacity .28s;
+}
+.modal-overlay.abierto { opacity: 1; }
+.modal-caja {
+  background: #fff; border-radius: 18px;
+  padding: 36px 32px 28px; width: 100%;
+  max-width: 480px; position: relative;
+  transform: scale(.95); transition: transform .28s;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  max-height: 90vh; overflow-y: auto;
+}
+.modal-overlay.abierto .modal-caja { transform: scale(1); }
+.modal-caja--grande { max-width: 580px; }
+.modal-caja--chica  { max-width: 380px; }
+.modal-cerrar {
+  position: absolute; top: 14px; right: 16px;
+  background: #f0f4f0; border: none; border-radius: 50%;
+  width: 34px; height: 34px; font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s; color: #333;
+}
+.modal-cerrar:hover { background: #dde8dd; }
+.modal-encabezado { text-align: center; margin-bottom: 22px; }
+.modal-encabezado > i { font-size: 2.2rem; color: #1a6e1a; margin-bottom: 8px; display: block; }
+.modal-encabezado h2  { font-size: 1.3rem; font-weight: 800; color: #1a3a1a; }
+.modal-encabezado p   { font-size: 0.9rem; color: #666; margin-top: 4px; }
+.modal-encabezado--peligro > i { color: #c0392b; }
+.modal-campo { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+.modal-campo label { font-size: 0.88rem; font-weight: 700; color: #2c4a4a; }
+.modal-campo input,
+.modal-campo textarea {
+  border: 1.5px solid #dde8dd; border-radius: 9px;
+  padding: 9px 12px; font-size: 1rem; font-family: inherit;
+  background: #f9fbf9; color: #333; outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.modal-campo input:focus,
+.modal-campo textarea:focus {
+  border-color: #1a6e1a;
+  box-shadow: 0 0 0 3px rgba(26,110,26,.1);
+}
+.modal-campo textarea { resize: vertical; min-height: 90px; }
+.modal-grid-campos { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.modal-campo--completo { grid-column: 1 / -1; }
+.modal-estado { font-size: 0.87rem; font-weight: 700; color: #c0392b; min-height: 1em; margin: 6px 0 0; }
+.modal-acciones {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin-top: 20px; justify-content: flex-end;
+}
+.modal-acciones--centradas { justify-content: center; }
+.modal-btn-principal {
+  background: linear-gradient(135deg, #1a6e1a 0%, #237823 100%);
+  color: #fff; border: none; border-radius: 10px;
+  padding: 10px 22px; font-size: 1rem; font-weight: 800;
+  font-family: inherit; cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 14px rgba(26,110,26,.22); transition: all .22s;
+}
+.modal-btn-principal:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,110,26,.32); }
+.modal-btn-peligro {
+  background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+  color: #fff; border: none; border-radius: 10px;
+  padding: 10px 22px; font-size: 1rem; font-weight: 800;
+  font-family: inherit; cursor: pointer;
+  display: flex; align-items: center; gap: 8px; transition: all .22s;
+}
+.modal-btn-peligro:hover { transform: translateY(-1px); }
+.modal-btn-cancelar {
+  background: #f0f4f0; color: #444; border: none; border-radius: 10px;
+  padding: 10px 18px; font-size: 1rem; font-weight: 700;
+  font-family: inherit; cursor: pointer; transition: background .2s;
+}
+.modal-btn-cancelar:hover { background: #dde8dd; }
+@media (max-width: 580px) {
+  .modal-grid-campos { grid-template-columns: 1fr; }
+  .modal-campo--completo { grid-column: 1; }
+}
+
