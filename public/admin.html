@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="admin-header__actions">
-        <button id="btnCerrarSesionAdmin" class="admin-btn admin-btn--danger">
+        <button type="button" id="btnCerrarSesionAdmin" class="admin-btn admin-btn--danger">
           <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
         </button>
       </div>
@@ -95,23 +95,23 @@
 
     <!-- Navegación por pestañas -->
     <div class="admin-tabs">
-      <button class="tab-btn activo" data-tab="contactos">
+      <button type="button" class="tab-btn activo" data-tab="contactos">
         <i class="fa-solid fa-envelope"></i> Contacto
         <span class="tab-badge tab-badge--vacio" id="badgeContactos">0</span>
       </button>
-      <button class="tab-btn" data-tab="inscripciones">
+      <button type="button" class="tab-btn" data-tab="inscripciones">
         <i class="fa-solid fa-file-signature"></i> Inscripciones
         <span class="tab-badge tab-badge--vacio" id="badgeInscripciones">0</span>
       </button>
-      <button class="tab-btn" data-tab="voluntariados">
+      <button type="button" class="tab-btn" data-tab="voluntariados">
         <i class="fa-solid fa-person-walking-arrow-right"></i> Voluntariados
         <span class="tab-badge tab-badge--vacio" id="badgeVoluntariados">0</span>
       </button>
-      <button class="tab-btn" data-tab="donaciones">
+      <button type="button" class="tab-btn" data-tab="donaciones">
         <i class="fa-solid fa-gift"></i> Donaciones
         <span class="tab-badge tab-badge--vacio" id="badgeDonaciones">0</span>
       </button>
-      <button class="tab-btn" data-tab="historias">
+      <button type="button" class="tab-btn" data-tab="historias">
         <i class="fa-solid fa-heart"></i> Historias
         <span class="tab-badge tab-badge--vacio" id="badgeHistorias">0</span>
       </button>
@@ -176,7 +176,7 @@
           <h3><i class="fa-solid fa-heart"></i> Historias de Vida</h3>
           <div style="display:flex;align-items:center;gap:12px;">
             <span id="infoHistorias">Cargando...</span>
-            <button class="hist-nueva-btn" id="btnNuevaHistoriaAdmin">
+            <button type="button" class="hist-nueva-btn" id="btnNuevaHistoriaAdmin">
               <i class="fa-solid fa-plus"></i> Nueva Historia
             </button>
           </div>
@@ -221,10 +221,10 @@
       </div>
       <p class="modal-estado" id="historiaModalEstado"></p>
       <div class="modal-acciones">
-        <button class="modal-btn-principal" id="btnGuardarHistoria">
+        <button type="button" class="modal-btn-principal" id="btnGuardarHistoria">
           <i class="fa-solid fa-floppy-disk"></i> Guardar
         </button>
-        <button class="modal-btn-cancelar" id="btnCancelarHistoria">Cancelar</button>
+        <button type="button" class="modal-btn-cancelar" id="btnCancelarHistoria">Cancelar</button>
       </div>
     </div>
   </div>
@@ -239,10 +239,10 @@
         <p>Esta acción no se puede deshacer.</p>
       </div>
       <div class="modal-acciones modal-acciones--centradas">
-        <button class="modal-btn-peligro" id="btnConfirmarEliminar">
+        <button type="button" class="modal-btn-peligro" id="btnConfirmarEliminar">
           <i class="fa-solid fa-trash"></i> Sí, eliminar
         </button>
-        <button class="modal-btn-cancelar" id="btnCancelarEliminar">Cancelar</button>
+        <button type="button" class="modal-btn-cancelar" id="btnCancelarEliminar">Cancelar</button>
       </div>
     </div>
   </div>

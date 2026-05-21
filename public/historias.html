@@ -95,7 +95,7 @@
 
         <!-- Barra de administrador (solo visible si el usuario es admin) -->
         <div class="hist-admin-bar" id="barraAdmin" style="display:none;">
-          <button class="hist-btn-nueva" id="btnNuevaHistoria">
+          <button type="button" class="hist-btn-nueva" id="btnNuevaHistoria">
             <i class="fa-solid fa-plus"></i> Nueva Historia
           </button>
         </div>
@@ -212,7 +212,7 @@
       <form id="loginForm" novalidate>
         <div class="modal-campo">
           <label for="loginCorreo">Correo electrónico</label>
-          <input id="loginCorreo" type="email" placeholder="admin@mail.com" autocomplete="email" required />
+          <input id="loginCorreo" type="email" placeholder="" autocomplete="email" required />
         </div>
         <div class="modal-campo">
           <label for="loginContrasena">Contraseña</label>
@@ -245,7 +245,7 @@
         </div>
         <div class="modal-campo modal-campo--completo">
           <label for="campImagen">URL de imagen *</label>
-          <input id="campImagen" type="url" placeholder="https://..." />
+          <input id="campImagen" type="text" placeholder="assets/images/perfil-XX.webp" />
         </div>
         <div class="modal-campo modal-campo--completo">
           <label for="campContenido">Contenido *</label>
@@ -254,10 +254,10 @@
       </div>
       <p class="modal-estado" id="historiaModalEstado"></p>
       <div class="modal-acciones">
-        <button class="modal-btn-principal" id="btnGuardarHistoria">
+        <button type="button" class="modal-btn-principal" id="btnGuardarHistoria">
           <i class="fa-solid fa-floppy-disk"></i> Guardar
         </button>
-        <button class="modal-btn-cancelar" id="btnCancelarHistoria">Cancelar</button>
+        <button type="button" class="modal-btn-cancelar" id="btnCancelarHistoria">Cancelar</button>
       </div>
     </div>
   </div>
@@ -272,10 +272,10 @@
         <p>Esta acción no se puede deshacer.</p>
       </div>
       <div class="modal-acciones modal-acciones--centradas">
-        <button class="modal-btn-peligro" id="btnConfirmarEliminar">
+        <button type="button" class="modal-btn-peligro" id="btnConfirmarEliminar">
           <i class="fa-solid fa-trash"></i> Sí, eliminar
         </button>
-        <button class="modal-btn-cancelar" id="btnCancelarEliminar">Cancelar</button>
+        <button type="button" class="modal-btn-cancelar" id="btnCancelarEliminar">Cancelar</button>
       </div>
     </div>
   </div>
