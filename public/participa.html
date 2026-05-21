@@ -140,23 +140,20 @@
           <span class="participa-page__line"></span>
         </header>
 
-        <article class="participa-card participa-card--inscripcion" id="inscripcion">
-          <h3><i class="fa-solid fa-file-signature"></i> Formulario de Inscripción</h3>
-          <p>
-            Realiza tu solicitud para iniciar el proceso de vinculación a nuestros programas sociales. Este
-            formulario nos ayuda a conocer mejor tus necesidades y a brindarte una atención más cercana.
-          </p>
-          <p>
-            Nuestro equipo revisa cada inscripción con respeto y confidencialidad, para orientar a cada persona
-            según su situación familiar, condiciones de salud y metas de bienestar.
-          </p>
-          <ul>
-            <li>Registro de datos básicos y contexto familiar.</li>
-            <li>Orientación sobre servicios disponibles.</li>
-            <li>Asignación de actividades según perfil e interés.</li>
-            <li>Validación de documentos para completar el proceso de ingreso.</li>
-            <li>Acompañamiento inicial para facilitar la adaptación al programa.</li>
-          </ul>
+        <div class="part-panel part-panel--inscripcion" id="inscripcion">
+          <div class="part-lateral">
+            <div class="part-lateral__icon"><i class="fa-solid fa-file-signature"></i></div>
+            <div class="part-lateral__titulo">Formulario de Inscripción</div>
+            <div class="part-lateral__desc">Realiza tu solicitud para vincularte a nuestros programas sociales. Nuestro equipo revisa cada solicitud con respeto y confidencialidad.</div>
+            <ul class="part-lateral__lista">
+              <li>Registro de datos básicos y contexto familiar.</li>
+              <li>Orientación sobre servicios disponibles.</li>
+              <li>Asignación de actividades según perfil e interés.</li>
+              <li>Validación de documentos para el proceso de ingreso.</li>
+              <li>Acompañamiento inicial para facilitar la adaptación.</li>
+            </ul>
+          </div>
+          <div class="part-form-wrap">
           <form class="participa-form" id="inscripcionForm" action="#" method="post" novalidate>
             <p class="participa-form__title"><i class="fa-solid fa-clipboard-list"></i> Completa tu solicitud de inscripción</p>
 
@@ -236,29 +233,23 @@
               <p class="participa-form__status" id="inscripcionStatus" aria-live="polite"></p>
             </div>
           </form>
-        </article>
+          </div>
+        </div>
 
-        <article class="participa-card participa-card--atencion" id="atencion">
-          <h3><i class="fa-solid fa-user-nurse"></i> Atención al Adulto Mayor</h3>
-          <p>
-            Brindamos atención humana y continua para fortalecer bienestar físico, emocional y social. Nuestro
-            objetivo es que cada adulto mayor se sienta escuchado, valorado y acompañado en su día a día.
-          </p>
-          <p>
-            La atención contempla orientación personalizada, actividades de estimulación cognitiva, espacios de
-            integración y seguimiento permanente para promover hábitos saludables.
-          </p>
-          <p>
-            También articulamos acciones con familiares y cuidadores para construir una red de apoyo que mejore la
-            calidad de vida, prevenga el aislamiento y fortalezca la autonomía de cada participante.
-          </p>
-          <ul>
-            <li>Acompañamiento en hábitos de autocuidado.</li>
-            <li>Actividades de integración y participación activa.</li>
-            <li>Seguimiento para promover una vejez digna.</li>
-            <li>Orientación a familiares sobre cuidado integral y trato digno.</li>
-            <li>Canalización a servicios complementarios cuando sea necesario.</li>
-          </ul>
+        <div class="part-panel part-panel--atencion" id="atencion">
+          <div class="part-lateral">
+            <div class="part-lateral__icon"><i class="fa-solid fa-user-nurse"></i></div>
+            <div class="part-lateral__titulo">Atención al Adulto Mayor</div>
+            <div class="part-lateral__desc">Brindamos atención humana y continua para fortalecer el bienestar físico, emocional y social de cada adulto mayor.</div>
+            <ul class="part-lateral__lista">
+              <li>Acompañamiento en hábitos de autocuidado.</li>
+              <li>Actividades de integración y participación activa.</li>
+              <li>Seguimiento para promover una vejez digna.</li>
+              <li>Orientación a familiares sobre cuidado integral.</li>
+              <li>Canalización a servicios complementarios.</li>
+            </ul>
+          </div>
+          <div class="part-form-wrap">
           <form class="participa-form" id="atencionForm" action="#" method="post" novalidate>
             <p class="participa-form__title"><i class="fa-solid fa-hand-holding-medical"></i> Solicitud de atención al adulto mayor</p>
 
@@ -367,7 +358,8 @@
               <p class="participa-form__status" id="atencionStatus" aria-live="polite"></p>
             </div>
           </form>
-        </article>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -713,6 +705,18 @@
       });
     });
     new GestorAutenticacion(new ApiCliente());
+
+    // Animación al hacer scroll
+    const panelObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.classList.contains('part-panel--atencion') ? 150 : 0;
+          setTimeout(() => entry.target.classList.add('av-visible'), delay);
+          panelObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.part-panel').forEach(el => panelObserver.observe(el));
   </script>
 </body>
 </html>
