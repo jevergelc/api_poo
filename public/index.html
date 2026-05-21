@@ -283,65 +283,8 @@
         <span class="historias-fotos__line"></span>
       </header>
 
-      <div class="historias-fotos__grid historias-fotos__grid--inicio">
-
-        <!-- 1. Lucero -->
-        <article class="idx-historia-card">
-          <div class="idx-historia-card__photo">
-            <img src="assets/images/perfil-01.webp" alt="Lucero Velásquez Velásquez" loading="lazy" />
-            <div class="idx-historia-card__overlay">
-              <p class="idx-historia-card__num">Historia #01</p>
-              <h3 class="idx-historia-card__name">Lucero Velásquez Velásquez</h3>
-              <span class="idx-historia-card__age"><i class="fa-solid fa-star"></i> 67 años</span>
-            </div>
-          </div>
-          <div class="idx-historia-card__body">
-            <p class="idx-historia-card__text">Lucero llegó a la fundación gracias a la invitación de dos amigas, encontrando un espacio de alegría en Ciudad Bolívar. Su vida dio un giro importante a los 20 años cuando se casó, y apenas un año después experimentó la mayor felicidad de su vida: el nacimiento de su primera hija. Para ella, la familia ha sido su motor y su mayor orgullo.</p>
-          </div>
-          <div class="idx-historia-card__consejo">
-            <p class="idx-historia-card__consejo-label"><i class="fa-solid fa-lightbulb"></i> Su consejo</p>
-            <p>“Aprendan a hacerse respetar y disfruten su juventud con mucho cuidado.”</p>
-          </div>
-        </article>
-
-        <!-- 2. María Vertilda -->
-        <article class="idx-historia-card">
-          <div class="idx-historia-card__photo">
-            <img src="assets/images/perfil-02.webp" alt="María Vertilda Rojas Alsevero" loading="lazy" />
-            <div class="idx-historia-card__overlay">
-              <p class="idx-historia-card__num">Historia #02</p>
-              <h3 class="idx-historia-card__name">María Vertilda Rojas Alsevero</h3>
-              <span class="idx-historia-card__age"><i class="fa-solid fa-star"></i> 65 años</span>
-            </div>
-          </div>
-          <div class="idx-historia-card__body">
-            <p class="idx-historia-card__text">Vecinas del barrio le contaron a María que en la fundación de Don Jorge hacían ejercicio y actividades recreativas; no dudó en unirse para mantenerse activa. Aunque solo pudo estudiar hasta segundo de bachillerato, su vitalidad es envidiable. Valora profundamente la salud y el compartir con sus compañeras.</p>
-          </div>
-          <div class="idx-historia-card__consejo">
-            <p class="idx-historia-card__consejo-label"><i class="fa-solid fa-lightbulb"></i> Su consejo</p>
-            <p>“Vivan más el presente y no usen tanto el celular.”</p>
-          </div>
-        </article>
-
-        <!-- 3. Luz Marina -->
-        <article class="idx-historia-card">
-          <div class="idx-historia-card__photo">
-            <img src="assets/images/perfil-03.webp" alt="Luz Marina García de Cárdenas" loading="lazy" />
-            <div class="idx-historia-card__overlay">
-              <p class="idx-historia-card__num">Historia #03</p>
-              <h3 class="idx-historia-card__name">Luz Marina García de Cárdenas</h3>
-              <span class="idx-historia-card__age"><i class="fa-solid fa-star"></i> 62 años</span>
-            </div>
-          </div>
-          <div class="idx-historia-card__body">
-            <p class="idx-historia-card__text">Tras una infancia en el campo, Luz Marina llegó a la ciudad y formó su hogar a los 17 años. Una amiga la trajo a la fundación, donde ha encontrado un grupo de apoyo incondicional. Su mayor logro ha sido sacar adelante a su familia a pesar de haber empezado sus responsabilidades siendo casi una niña.</p>
-          </div>
-          <div class="idx-historia-card__consejo">
-            <p class="idx-historia-card__consejo-label"><i class="fa-solid fa-lightbulb"></i> Su consejo</p>
-            <p>“Estudien mucho y no se llenen de hijos tan pronto; vivan cada etapa.”</p>
-          </div>
-        </article>
-
+      <div id="historiasIndexGrid" class="historias-fotos__grid historias-fotos__grid--inicio">
+        <!-- Las historias se cargan dinámicamente desde /api/v1/historias -->
       </div>
       <div class="historias-fotos__more">
         <a href="historias.html" class="historias-fotos__btn-more">Ver todas las historias</a>
@@ -740,6 +683,42 @@
         contactoForm.reset();
       });
     }
+
+    // ===== HISTORIAS DESTACADAS DESDE LA API =====
+    (async () => {
+      const grid = document.getElementById('historiasIndexGrid');
+      if (!grid) return;
+      try {
+        const respuesta = await new ApiCliente().obtenerHistorias();
+        const historias = (respuesta.data || []).slice(0, 3);
+        if (!historias.length) return;
+        grid.innerHTML = historias.map((h, i) => `
+          <article class="idx-historia-card">
+            <div class="idx-historia-card__photo">
+              <img src="${h.imagen}" alt="${h.titulo}" loading="lazy" />
+              <div class="idx-historia-card__overlay">
+                <p class="idx-historia-card__num">Historia #${String(i + 1).padStart(2, '0')}</p>
+                <h3 class="idx-historia-card__name">${h.titulo}</h3>
+                <span class="idx-historia-card__age"><i class="fa-solid fa-star"></i> ${h.autor}</span>
+              </div>
+            </div>
+            <div class="idx-historia-card__body">
+              <p class="idx-historia-card__text">${h.contenido}</p>
+            </div>
+            ${h.consejo ? `<div class="idx-historia-card__consejo">
+              <p class="idx-historia-card__consejo-label"><i class="fa-solid fa-lightbulb"></i> Su consejo</p>
+              <p>"${h.consejo}"</p>
+            </div>` : ''}
+          </article>`).join('');
+
+        // Re-vincular lightbox a las nuevas imágenes
+        document.querySelectorAll('.idx-historia-card__photo').forEach(wrap => {
+          const img  = wrap.querySelector('img');
+          const name = wrap.closest('.idx-historia-card').querySelector('.idx-historia-card__name')?.textContent.trim() || '';
+          wrap.addEventListener('click', () => openLb(img.src, img.alt, name));
+        });
+      } catch (e) { /* Si la API no responde, la sección queda vacía */ }
+    })();
 
     // ===== INICIALIZACIÓN SESIÓN =====
     new GestorAutenticacion(new ApiCliente());
