@@ -14,6 +14,7 @@ class GestorAutenticacion {
   constructor(apiCliente, alCambiarSesion = null) {
     this.api            = apiCliente;
     this.alCambiarSesion = alCambiarSesion;
+    this._inyectarModalLogin();
     this._inyectarBotonSesion();
     this._escucharFormularioLogin();
   }
@@ -162,6 +163,47 @@ class GestorAutenticacion {
         estado.className   = 'modal-estado modal-estado--error';
       }
     });
+  }
+
+  /**
+   * Crea e inyecta el HTML del modal de login si aún no existe en el DOM.
+   */
+  _inyectarModalLogin() {
+    if (document.getElementById('loginModal')) return;
+    const modal = document.createElement('div');
+    modal.id        = 'loginModal';
+    modal.className = 'modal-overlay';
+    modal.setAttribute('style',       'display:none;');
+    modal.setAttribute('role',        'dialog');
+    modal.setAttribute('aria-modal',  'true');
+    modal.setAttribute('aria-labelledby', 'loginTitulo');
+    modal.innerHTML = `
+      <div class="modal-caja">
+        <button class="modal-cerrar" id="loginCerrar" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-encabezado">
+          <i class="fa-solid fa-lock"></i>
+          <h2 id="loginTitulo">Iniciar Sesión</h2>
+          <p>Ingresa con tu cuenta de administrador</p>
+        </div>
+        <form id="loginForm" novalidate>
+          <div class="modal-campo">
+            <label for="loginCorreo">Correo electrónico</label>
+            <input id="loginCorreo" type="email" placeholder="admin@mail.com" required />
+          </div>
+          <div class="modal-campo">
+            <label for="loginContrasena">Contraseña</label>
+            <input id="loginContrasena" type="password" placeholder="••••••••" required />
+          </div>
+          <p class="modal-estado" id="loginEstado"></p>
+          <div class="modal-acciones">
+            <button type="submit" id="btnLogin" class="modal-btn modal-btn--primario">
+              <i class="fa-solid fa-right-to-bracket"></i> Ingresar
+            </button>
+            <button type="button" id="btnCancelarLogin" class="modal-btn modal-btn--secundario">Cancelar</button>
+          </div>
+        </form>
+      </div>`;
+    document.body.appendChild(modal);
   }
 
   /**
