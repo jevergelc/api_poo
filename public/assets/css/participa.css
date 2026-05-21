@@ -1,0 +1,148 @@
+﻿    /* ===== FORMULARIOS PARTICIPA ===== */
+    .participa-form {
+      margin-top: 28px;
+      background: #f7faf7;
+      border-radius: 14px;
+      padding: 28px 24px 20px;
+      border: 1.5px solid #c8e6c8;
+    }
+    .participa-form__title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--verde-oscuro, #1a6e1a);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .participa-form__section {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #237823;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin: 20px 0 10px;
+      padding-bottom: 4px;
+      border-bottom: 1.5px solid #c8e6c8;
+    }
+    .participa-form__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 18px;
+    }
+    @media (max-width: 600px) {
+      .participa-form__grid { grid-template-columns: 1fr; }
+    }
+    .participa-form__field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .participa-form__field--full {
+      grid-column: 1 / -1;
+    }
+    .participa-form__field label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2c5252;
+    }
+    .participa-form__field input,
+    .participa-form__field select,
+    .participa-form__field textarea {
+      border: 1.5px solid #b2d8b2;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #fff;
+      color: #333;
+      transition: border-color .2s;
+      outline: none;
+    }
+    .participa-form__field input:focus,
+    .participa-form__field select:focus,
+    .participa-form__field textarea:focus {
+      border-color: #1a6e1a;
+      box-shadow: 0 0 0 3px rgba(26,110,26,.1);
+    }
+    .participa-form__field textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .participa-form__checks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      margin-top: 4px;
+    }
+    .participa-form__checks label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+    }
+    .participa-form__checks input[type="checkbox"],
+    .participa-form__checks input[type="radio"] {
+      accent-color: #1a6e1a;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    .participa-form__actions {
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .participa-form__submit {
+      background: linear-gradient(135deg, #1a6e1a 0%, #237823 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 28px;
+      font-size: 1rem;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .22s, box-shadow .22s;
+      box-shadow: 0 4px 14px rgba(26,110,26,.22);
+    }
+    .participa-form__submit:hover {
+      background: linear-gradient(135deg, #145914 0%, #1a6e1a 100%);
+      box-shadow: 0 6px 20px rgba(26,110,26,.32);
+    }
+    .participa-form__status {
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .participa-form__status--success { color: #1a6e1a; }
+    .participa-form__status--error   { color: #c0392b; }
+
+    .field-error {
+      display: block;
+      color: #c0392b;
+      font-size: 0.79rem;
+      font-weight: 700;
+      margin-top: 4px;
+      min-height: 1.1em;
+      line-height: 1.3;
+    }
+    .participa-form__field input.campo-invalido,
+    .participa-form__field select.campo-invalido,
+    .participa-form__field textarea.campo-invalido {
+      border-color: #c0392b !important;
+      box-shadow: 0 0 0 3px rgba(192,57,43,.13);
+    }
+    .participa-form__field input.campo-valido,
+    .participa-form__field select.campo-valido,
+    .participa-form__field textarea.campo-valido {
+      border-color: #1a6e1a !important;
+      box-shadow: 0 0 0 3px rgba(26,110,26,.10);
+    }

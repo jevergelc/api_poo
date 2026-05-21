@@ -406,6 +406,8 @@
   </footer>
 
   <!-- Script menú móvil -->
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/autenticacion.js"></script>
   <script>
     const toggle = document.getElementById('navToggle');
     const menu   = document.getElementById('navMenu');
@@ -430,6 +432,7 @@
         if (chevron) chevron.style.transform = abierto ? 'rotate(180deg)' : '';
       });
     });
+    new GestorAutenticacion(new ApiCliente());
   </script>
 </body>
 </html>

@@ -279,25 +279,258 @@
   </style>
 </head>
 <body>
-        </div>
+  <div class="top-accent"></div>
+
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <header class="top-bar">
+    <div class="top-bar__inner">
+      <a href="index.html" class="top-bar__logo" aria-label="Ir al inicio">
+        <img src="assets/images/logo.webp" alt="Logo Fundación Renacer Vida Feliz" />
       </a>
-      <a href="tel:+573053123384" class="info-block">
-        <div class="info-block__icon"><i class="fa-solid fa-phone"></i></div>
-        <div class="info-block__text">
-          <span class="info-block__title">+57 305 312 3384</span>
-          <span class="info-block__sub">Llámanos ahora</span>
+      <div class="top-bar__info">
+        <a href="participa.html#inscripcion" class="info-block">
+          <div class="info-block__icon"><i class="fa-solid fa-heart"></i></div>
+          <div class="info-block__text">
+            <span class="info-block__title">Únete</span>
+            <span class="info-block__sub">Haz parte de nuestra familia</span>
+          </div>
+        </a>
+        <a href="tel:+573053123384" class="info-block">
+          <div class="info-block__icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="info-block__text">
+            <span class="info-block__title">+57 305 312 3384</span>
+            <span class="info-block__sub">Llámanos ahora</span>
+          </div>
+        </a>
+        <a href="https://maps.google.com/?q=Comedor+Comunitario+Jerusalen+Canteras+Bogota" target="_blank" rel="noopener" class="info-block">
+          <div class="info-block__icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="info-block__text">
+            <span class="info-block__title">Comedor Comunitario Jerusalén Canteras</span>
+            <span class="info-block__sub">Bogotá, Colombia</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== NAVEGACIÓN ===== -->
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <div class="navbar__inner">
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <ul class="navbar__menu" id="navMenu">
+        <li class="nav-item"><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
+        <li class="nav-item">
+          <a href="historia.html"><i class="fa-solid fa-people-group"></i> Quiénes Somos <i class="fa-solid fa-chevron-down"></i></a>
+          <ul class="dropdown">
+            <li><a href="historia.html#historia"><i class="fa-solid fa-book-open"></i> Nuestra Historia</a></li>
+            <li><a href="historia.html#mision"><i class="fa-solid fa-bullseye"></i> Misión y Visión</a></li>
+            <li><a href="historia.html#reconocimientos"><i class="fa-solid fa-award"></i> Reconocimientos</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="participa.html"><i class="fa-solid fa-hand-holding-heart"></i> Participa <i class="fa-solid fa-chevron-down"></i></a>
+          <ul class="dropdown">
+            <li><a href="participa.html#inscripcion"><i class="fa-solid fa-file-signature"></i> Formulario de Inscripción</a></li>
+            <li><a href="participa.html#atencion"><i class="fa-solid fa-user-nurse"></i> Atención al Adulto Mayor</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="actividades.html"><i class="fa-solid fa-star"></i> Actividades <i class="fa-solid fa-chevron-down"></i></a>
+          <ul class="dropdown">
+            <li><a href="actividades.html#talleres"><i class="fa-solid fa-palette"></i> Talleres y Recreación</a></li>
+            <li><a href="actividades.html#galeria"><i class="fa-solid fa-images"></i> Galería</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="historias.html"><i class="fa-solid fa-heart"></i> Historias</a></li>
+        <li class="nav-item activo">
+          <a href="ayudanos.html"><i class="fa-solid fa-hands-holding-child"></i> Ayúdanos <i class="fa-solid fa-chevron-down"></i></a>
+          <ul class="dropdown">
+            <li><a href="#voluntariado"><i class="fa-solid fa-person-walking-arrow-right"></i> Voluntariado</a></li>
+            <li><a href="#donaciones"><i class="fa-solid fa-gift"></i> Donaciones</a></li>
+          </ul>
+        </li>
+        <li class="nav-item nav-item--cta"><a href="index.html#contacto"><i class="fa-solid fa-envelope"></i> Contáctanos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="ayudanos-page__content">
+    <div class="ayudanos-page__wrap">
+
+      <!-- VOLUNTARIADO -->
+      <section id="voluntariado" aria-label="Formulario de voluntariado">
+        <div class="ayuda-panel ayuda-panel--voluntariado">
+          <div class="ayuda-lateral">
+            <div class="ayuda-lateral__icon"><i class="fa-solid fa-person-walking-arrow-right"></i></div>
+            <p class="ayuda-lateral__titulo">Únete como voluntario</p>
+            <p class="ayuda-lateral__desc">Tu tiempo y dedicación hacen la diferencia en la vida de nuestros adultos mayores.</p>
+            <ul class="ayuda-lateral__lista">
+              <li>Actividades recreativas y culturales</li>
+              <li>Apoyo emocional y acompañamiento</li>
+              <li>Talleres y capacitaciones</li>
+              <li>Gestión administrativa</li>
+            </ul>
+          </div>
+          <div class="ayuda-form-wrap">
+            <p class="ayuda-form__titulo">
+              <i class="fa-solid fa-file-signature"></i> Formulario de Voluntariado
+            </p>
+            <form id="voluntariadoForm" novalidate>
+              <div class="ayuda-form__grid">
+                <div class="ayuda-form__seccion">Datos personales</div>
+                <div class="ayuda-form__field">
+                  <label for="vol-nombre">Nombre completo *</label>
+                  <input id="vol-nombre" type="text" placeholder="Tu nombre completo" />
+                  <span class="ayuda-field-error" id="err-vol-nombre"></span>
+                </div>
+                <div class="ayuda-form__field">
+                  <label for="vol-edad">Edad *</label>
+                  <input id="vol-edad" type="number" placeholder="Ej: 25" min="15" max="90" />
+                  <span class="ayuda-field-error" id="err-vol-edad"></span>
+                </div>
+                <div class="ayuda-form__field">
+                  <label for="vol-telefono">Teléfono *</label>
+                  <input id="vol-telefono" type="tel" placeholder="Ej: 3001234567" />
+                  <span class="ayuda-field-error" id="err-vol-telefono"></span>
+                </div>
+                <div class="ayuda-form__field">
+                  <label for="vol-correo">Correo electrónico *</label>
+                  <input id="vol-correo" type="email" placeholder="tu@correo.com" />
+                  <span class="ayuda-field-error" id="err-vol-correo"></span>
+                </div>
+                <div class="ayuda-form__actions">
+                  <button type="submit" class="ayuda-btn ayuda-btn--verde">
+                    <i class="fa-solid fa-paper-plane"></i> Enviar solicitud
+                  </button>
+                  <p class="ayuda-form__status" id="voluntariadoStatus"></p>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-      </a>
-      <a href="https://maps.google.com/?q=Comedor+Comunitario+Jerusalen+Canteras+Bogota" target="_blank" rel="noopener" class="info-block">
-        <div class="info-block__icon"><i class="fa-solid fa-location-dot"></i></div>
-        <div class="info-block__text">
-          <span class="info-block__title">Comedor Comunitario Jerusalén Canteras</span>
-          <span class="info-block__sub">Bogotá, Colombia</span>
+      </section>
+
+      <!-- DONACIONES -->
+      <section id="donaciones" aria-label="Formulario de donaciones">
+        <div class="ayuda-panel ayuda-panel--donaciones">
+          <div class="ayuda-lateral">
+            <div class="ayuda-lateral__icon"><i class="fa-solid fa-gift"></i></div>
+            <p class="ayuda-lateral__titulo">Apoya con una donación</p>
+            <p class="ayuda-lateral__desc">Cada aporte transforma vidas y trae alegría a nuestra comunidad.</p>
+            <ul class="ayuda-lateral__lista">
+              <li>Alimentos y productos de primera necesidad</li>
+              <li>Ropa y calzado en buen estado</li>
+              <li>Medicamentos y elementos de aseo</li>
+              <li>Apoyo económico para actividades</li>
+            </ul>
+          </div>
+          <div class="ayuda-form-wrap">
+            <p class="ayuda-form__titulo">
+              <i class="fa-solid fa-hand-holding-heart"></i> Formulario de Donaciones
+            </p>
+            <form id="donacionesForm" novalidate>
+              <div class="ayuda-form__grid">
+                <div class="ayuda-form__seccion">Tus datos</div>
+                <div class="ayuda-form__field">
+                  <label for="don-nombre">Nombre o razón social *</label>
+                  <input id="don-nombre" type="text" placeholder="Tu nombre o empresa" />
+                  <span class="ayuda-field-error" id="err-don-nombre"></span>
+                </div>
+                <div class="ayuda-form__field">
+                  <label for="don-telefono">Teléfono *</label>
+                  <input id="don-telefono" type="tel" placeholder="Ej: 3001234567" />
+                  <span class="ayuda-field-error" id="err-don-telefono"></span>
+                </div>
+                <div class="ayuda-form__field ayuda-form__field--full">
+                  <label for="don-correo">Correo electrónico *</label>
+                  <input id="don-correo" type="email" placeholder="tu@correo.com" />
+                  <span class="ayuda-field-error" id="err-don-correo"></span>
+                </div>
+                <div class="ayuda-form__seccion">Tipo de donación</div>
+                <div class="ayuda-form__field ayuda-form__field--full ayuda-form__checks">
+                  <div class="ayuda-checks">
+                    <label><input type="radio" name="tipo_donacion" value="especie" /> En especie</label>
+                    <label><input type="radio" name="tipo_donacion" value="economica" /> Económica</label>
+                    <label><input type="radio" name="tipo_donacion" value="ambas" /> Ambas</label>
+                  </div>
+                  <span class="ayuda-field-error" id="err-don-tipo"></span>
+                </div>
+                <div id="bloque-especie" class="ayuda-form__field ayuda-form__field--full" style="display:none;">
+                  <label>¿Qué deseas donar?</label>
+                  <textarea placeholder="Describe los artículos o productos..." rows="3"></textarea>
+                </div>
+                <div id="bloque-economica" class="ayuda-form__field ayuda-form__field--full" style="display:none;">
+                  <label>Monto aproximado</label>
+                  <input type="text" placeholder="Ej: $50.000" />
+                </div>
+                <div class="ayuda-form__actions">
+                  <button type="submit" class="ayuda-btn ayuda-btn--dorado">
+                    <i class="fa-solid fa-heart"></i> Registrar donación
+                  </button>
+                  <p class="ayuda-form__status" id="donacionesStatus"></p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- BOTONES FLOTANTES -->
+  <div class="social-float" aria-label="Canales de contacto rápido">
+    <a href="https://wa.me/573053123384" target="_blank" rel="noopener" class="social-float__btn social-float__btn--whatsapp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://www.facebook.com/share/1BfNWwnKjM/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-float__btn social-float__btn--facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="mailto:furevf@hotmail.com" class="social-float__btn social-float__btn--mail" aria-label="Correo"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__accent"></div>
+    <div class="footer__main">
+      <div class="footer__inner">
+        <div class="footer__col footer__col--brand">
+          <img src="assets/images/logo.webp" alt="Logo Fundación Renacer Vida Feliz" class="footer__logo" />
+          <p class="footer__desc">Acompañamos a nuestros adultos mayores con amor, dignidad y alegría. Juntos construimos una vejez feliz en Bogotá.</p>
+          <div class="footer__socials">
+            <a href="https://wa.me/573053123384" target="_blank" rel="noopener" class="social-btn social-btn--whatsapp" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span>
+            </a>
+            <a href="https://www.facebook.com/share/1BfNWwnKjM/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-btn social-btn--facebook" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i><span>Facebook</span>
+            </a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__title"><i class="fa-solid fa-sitemap"></i> Navegación</h4>
+          <ul class="footer__links">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Inicio</a></li>
+            <li><a href="historia.html"><i class="fa-solid fa-chevron-right"></i> Quiénes Somos</a></li>
+            <li><a href="participa.html"><i class="fa-solid fa-chevron-right"></i> Participa</a></li>
+            <li><a href="actividades.html"><i class="fa-solid fa-chevron-right"></i> Actividades</a></li>
+            <li><a href="historias.html"><i class="fa-solid fa-chevron-right"></i> Historias</a></li>
+            <li><a href="ayudanos.html"><i class="fa-solid fa-chevron-right"></i> Ayúdanos</a></li>
+            <li><a href="index.html#contacto"><i class="fa-solid fa-chevron-right"></i> Contáctanos</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
           <h4 class="footer__title"><i class="fa-solid fa-address-book"></i> Contacto</h4>
           <ul class="footer__contact">
-            <li><div class="contact-icon"><i class="fa-solid fa-phone"></i></div><div><span class="contact-label">Teléfonos</span><a href="tel:+573053123384">+57 305 312 3384</a></div></li>
-            <li><div class="contact-icon"><i class="fa-solid fa-envelope"></i></div><div><span class="contact-label">Correo electrónico</span><a href="mailto:furevf@hotmail.com">furevf@hotmail.com</a></div></li>
-            <li><div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div><div><span class="contact-label">Dirección</span><span>Comedor Comunitario Jerusalén Canteras</span><span>Bogotá, Colombia</span></div></li>
+            <li>
+              <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+              <div><span class="contact-label">Teléfonos</span><a href="tel:+573053123384">+57 305 312 3384</a></div>
+            </li>
+            <li>
+              <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div><span class="contact-label">Correo electrónico</span><a href="mailto:furevf@hotmail.com">furevf@hotmail.com</a></div>
+            </li>
+            <li>
+              <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div><span class="contact-label">Dirección</span><span>Comedor Comunitario Jerusalén Canteras</span><span>Bogotá, Colombia</span></div>
+            </li>
           </ul>
         </div>
         <div class="footer__col footer__col--map">
@@ -317,6 +550,8 @@
     </div>
   </footer>
 
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/autenticacion.js"></script>
   <script>
     // ===== MENÚ =====
     const toggle = document.getElementById('navToggle');
@@ -483,6 +718,9 @@
         document.getElementById('bloque-economica').style.display = 'none';
       });
     }
+
+    // ===== INICIALIZACIÓN SESIÓN =====
+    new GestorAutenticacion(new ApiCliente());
   </script>
 </body>
 </html>
