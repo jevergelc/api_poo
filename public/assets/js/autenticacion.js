@@ -104,15 +104,10 @@ class GestorAutenticacion {
 
   /**
    * Agrega el ítem de sesión al final del menú de navegación.
-   * En páginas públicas, si el usuario es admin, no se muestra nada.
    */
   _inyectarBotonSesion() {
     const menu = document.getElementById('navMenu');
     if (!menu) return;
-
-    if (this.estaAutenticado() && this.esAdmin() && !this._enPanelAdmin()) {
-      return;
-    }
 
     const item = document.createElement('li');
     item.className = 'nav-item nav-item--sesion';
@@ -126,6 +121,7 @@ class GestorAutenticacion {
 
   /**
    * Actualiza el contenido del botón según el estado actual de la sesión.
+   * Admin en páginas públicas: solo muestra "Salir" (sin link al panel).
    */
   _actualizarBotonSesion() {
     const item = document.getElementById('itemSesion');
