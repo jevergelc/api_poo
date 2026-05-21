@@ -657,7 +657,7 @@
     }
 
     if (contactoForm && contactoStatus) {
-      contactoForm.addEventListener('submit', (e) => {
+      contactoForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const phoneValue = telefonoInput ? telefonoInput.value.trim() : '';
@@ -678,9 +678,26 @@
           return;
         }
 
-        contactoStatus.textContent = 'Gracias por escribirnos. Tu mensaje fue registrado correctamente.';
-        contactoStatus.className = 'contacto-form__status contacto-form__status--success';
-        contactoForm.reset();
+        const datos = {
+          nombre:   document.getElementById('nombre').value.trim(),
+          correo:   document.getElementById('correo').value.trim(),
+          telefono: document.getElementById('telefono').value.trim(),
+          asunto:   document.getElementById('asunto').value.trim(),
+          mensaje:  document.getElementById('mensaje').value.trim()
+        };
+
+        contactoStatus.textContent = 'Enviando...';
+        contactoStatus.className = 'contacto-form__status';
+
+        try {
+          await new ApiCliente().enviarContacto(datos);
+          contactoStatus.textContent = '✔ Gracias por escribirnos. Tu mensaje fue registrado correctamente.';
+          contactoStatus.className = 'contacto-form__status contacto-form__status--success';
+          contactoForm.reset();
+        } catch (err) {
+          contactoStatus.textContent = '⚠ Ocurrió un error al enviar tu mensaje. Intenta de nuevo.';
+          contactoStatus.className = 'contacto-form__status contacto-form__status--error';
+        }
       });
     }
 

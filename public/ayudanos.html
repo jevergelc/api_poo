@@ -673,18 +673,32 @@
     const volForm   = document.getElementById('voluntariadoForm');
     const volStatus = document.getElementById('voluntariadoStatus');
     if (volForm) {
-      volForm.addEventListener('submit', e => {
+      volForm.addEventListener('submit', async e => {
         e.preventDefault();
-        const ok = avValidarTodo(VOL_CAMPOS);
-        if (!ok) {
+        const valido = avValidarTodo(VOL_CAMPOS);
+        if (!valido) {
           volStatus.textContent = 'Corrige los campos marcados en rojo antes de enviar.';
           volStatus.className = 'ayuda-form__status ayuda-form__status--err';
           return;
         }
-        volStatus.textContent = '✔ Tu solicitud de voluntariado fue enviada. ¡Gracias por querer ayudar!';
-        volStatus.className = 'ayuda-form__status ayuda-form__status--ok';
-        volForm.reset();
-        avLimpiar(VOL_CAMPOS);
+        const datos = {
+          nombre:   document.getElementById('vol-nombre').value.trim(),
+          edad:     document.getElementById('vol-edad').value.trim(),
+          telefono: document.getElementById('vol-telefono').value.trim(),
+          correo:   document.getElementById('vol-correo').value.trim()
+        };
+        volStatus.textContent = 'Enviando...';
+        volStatus.className = 'ayuda-form__status';
+        try {
+          await new ApiCliente().crearVoluntariado(datos);
+          volStatus.textContent = '✔ Tu solicitud de voluntariado fue enviada. ¡Gracias por querer ayudar!';
+          volStatus.className = 'ayuda-form__status ayuda-form__status--ok';
+          volForm.reset();
+          avLimpiar(VOL_CAMPOS);
+        } catch (err) {
+          volStatus.textContent = '⚠ Error al enviar la solicitud. Intenta de nuevo.';
+          volStatus.className = 'ayuda-form__status ayuda-form__status--err';
+        }
       });
     }
 
@@ -692,30 +706,47 @@
     const donForm   = document.getElementById('donacionesForm');
     const donStatus = document.getElementById('donacionesStatus');
     if (donForm) {
-      donForm.addEventListener('submit', e => {
+      donForm.addEventListener('submit', async e => {
         e.preventDefault();
-        const ok = avValidarTodo(DON_CAMPOS);
-        // validar tipo de donación (radio)
+        const valido = avValidarTodo(DON_CAMPOS);
         const tipoElegido = donForm.querySelector('input[name="tipo_donacion"]:checked');
         const errTipoSpan = document.getElementById('err-don-tipo');
         if (!tipoElegido) {
           if (errTipoSpan) errTipoSpan.textContent = '⚠ Selecciona al menos un tipo de donación.';
-          if (ok) { const el = document.querySelector('input[name="tipo_donacion"]'); if (el) el.focus(); }
+          if (valido) { const el = document.querySelector('input[name="tipo_donacion"]'); if (el) el.focus(); }
         } else {
           if (errTipoSpan) errTipoSpan.textContent = '';
         }
-        if (!ok || !tipoElegido) {
+        if (!valido || !tipoElegido) {
           donStatus.textContent = 'Corrige los campos marcados en rojo antes de enviar.';
           donStatus.className = 'ayuda-form__status ayuda-form__status--err';
           return;
         }
-        donStatus.textContent = '✔ Tu intención de donación fue registrada. ¡Gracias por tu generosidad!';
-        donStatus.className = 'ayuda-form__status ayuda-form__status--ok';
-        donForm.reset();
-        avLimpiar(DON_CAMPOS);
-        if (errTipoSpan) errTipoSpan.textContent = '';
-        document.getElementById('bloque-especie').style.display   = 'none';
-        document.getElementById('bloque-economica').style.display = 'none';
+        const bloqueEspecie   = document.getElementById('bloque-especie');
+        const bloqueEconomica = document.getElementById('bloque-economica');
+        const datos = {
+          nombre:               document.getElementById('don-nombre').value.trim(),
+          telefono:             document.getElementById('don-telefono').value.trim(),
+          correo:               document.getElementById('don-correo').value.trim(),
+          tipo_donacion:        tipoElegido.value,
+          descripcion_especie:  bloqueEspecie   ? (bloqueEspecie.querySelector('textarea')?.value.trim()  || '') : '',
+          monto:                bloqueEconomica ? (bloqueEconomica.querySelector('input')?.value.trim()   || '') : ''
+        };
+        donStatus.textContent = 'Enviando...';
+        donStatus.className = 'ayuda-form__status';
+        try {
+          await new ApiCliente().crearDonacion(datos);
+          donStatus.textContent = '✔ Tu intención de donación fue registrada. ¡Gracias por tu generosidad!';
+          donStatus.className = 'ayuda-form__status ayuda-form__status--ok';
+          donForm.reset();
+          avLimpiar(DON_CAMPOS);
+          if (errTipoSpan) errTipoSpan.textContent = '';
+          if (bloqueEspecie)   bloqueEspecie.style.display   = 'none';
+          if (bloqueEconomica) bloqueEconomica.style.display = 'none';
+        } catch (err) {
+          donStatus.textContent = '⚠ Error al registrar la donación. Intenta de nuevo.';
+          donStatus.className = 'ayuda-form__status ayuda-form__status--err';
+        }
       });
     }
 

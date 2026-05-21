@@ -116,7 +116,11 @@ class GestorAutenticacion {
 
     if (this.estaAutenticado()) {
       const nombre = this.obtenerNombre() || 'Admin';
+      const esAdmin = this.esAdmin();
       item.innerHTML = `
+        ${esAdmin ? `<a href="admin.html" class="nav-sesion-admin" style="margin-right:8px;">
+          <i class="fa-solid fa-shield-halved"></i> Panel Admin
+        </a>` : ''}
         <a href="#" id="btnCerrarSesion" class="nav-sesion-salir">
           <i class="fa-solid fa-right-from-bracket"></i> Salir (${nombre})
         </a>`;

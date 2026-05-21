@@ -86,6 +86,26 @@ const terms = require("../controllers/terms.controller");
  */
 const historias = require("../controllers/historias.controller");
 
+/**
+ * Controlador de mensajes de contacto
+ */
+const contacto = require("../controllers/contacto.controller");
+
+/**
+ * Controlador de inscripciones y atención al adulto mayor
+ */
+const inscripciones = require("../controllers/inscripcion.controller");
+
+/**
+ * Controlador de solicitudes de voluntariado
+ */
+const voluntariados = require("../controllers/voluntariado.controller");
+
+/**
+ * Controlador de ofertas de donación
+ */
+const donaciones = require("../controllers/donacion.controller");
+
 /* =========================================================
    VERIFICACIÓN DE ESTADO
 ========================================================= */
@@ -443,6 +463,94 @@ router.delete(
   requireRole("admin"),
   historias.remove
 );
+
+/* =========================================================
+   CONTACTO
+========================================================= */
+
+/**
+ * Enviar mensaje de contacto
+ *
+ * Acceso: público
+ * Método: POST
+ * Endpoint: /contacto
+ */
+router.post("/contacto", contacto.create);
+
+/**
+ * Listar mensajes de contacto
+ *
+ * Acceso: admin
+ * Método: GET
+ * Endpoint: /contacto
+ */
+router.get("/contacto", requireApiKey, requireRole("admin"), contacto.list);
+
+/* =========================================================
+   INSCRIPCIONES
+========================================================= */
+
+/**
+ * Registrar inscripción o solicitud de atención
+ *
+ * Acceso: público
+ * Método: POST
+ * Endpoint: /inscripciones
+ */
+router.post("/inscripciones", inscripciones.create);
+
+/**
+ * Listar inscripciones
+ *
+ * Acceso: admin
+ * Método: GET
+ * Endpoint: /inscripciones
+ */
+router.get("/inscripciones", requireApiKey, requireRole("admin"), inscripciones.list);
+
+/* =========================================================
+   VOLUNTARIADOS
+========================================================= */
+
+/**
+ * Registrar solicitud de voluntariado
+ *
+ * Acceso: público
+ * Método: POST
+ * Endpoint: /voluntariados
+ */
+router.post("/voluntariados", voluntariados.create);
+
+/**
+ * Listar solicitudes de voluntariado
+ *
+ * Acceso: admin
+ * Método: GET
+ * Endpoint: /voluntariados
+ */
+router.get("/voluntariados", requireApiKey, requireRole("admin"), voluntariados.list);
+
+/* =========================================================
+   DONACIONES
+========================================================= */
+
+/**
+ * Registrar oferta de donación
+ *
+ * Acceso: público
+ * Método: POST
+ * Endpoint: /donaciones
+ */
+router.post("/donaciones", donaciones.create);
+
+/**
+ * Listar donaciones registradas
+ *
+ * Acceso: admin
+ * Método: GET
+ * Endpoint: /donaciones
+ */
+router.get("/donaciones", requireApiKey, requireRole("admin"), donaciones.list);
 
 /* =========================================================
    EXPORTACIÓN DEL ROUTER

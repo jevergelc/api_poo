@@ -615,18 +615,40 @@
     const inscripcionForm   = document.getElementById('inscripcionForm');
     const inscripcionStatus = document.getElementById('inscripcionStatus');
     if (inscripcionForm && inscripcionStatus) {
-      inscripcionForm.addEventListener('submit', (e) => {
+      inscripcionForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const ok = validarFormulario(INS_CAMPOS);
-        if (!ok) {
+        const valido = validarFormulario(INS_CAMPOS);
+        if (!valido) {
           inscripcionStatus.textContent = 'Revisa y corrige los campos marcados en rojo antes de enviar.';
           inscripcionStatus.className = 'participa-form__status participa-form__status--error';
           return;
         }
-        inscripcionStatus.textContent = '✔ Tu solicitud de inscripción fue enviada correctamente. Te contactaremos pronto.';
-        inscripcionStatus.className = 'participa-form__status participa-form__status--success';
-        inscripcionForm.reset();
-        limpiarFormulario(INS_CAMPOS);
+        const programas = Array.from(inscripcionForm.querySelectorAll('input[name="programa"]:checked')).map(c => c.value);
+        const datos = {
+          tipo:        'inscripcion',
+          nombre:      document.getElementById('ins-nombre').value.trim(),
+          documento:   document.getElementById('ins-documento').value.trim(),
+          nacimiento:  document.getElementById('ins-nacimiento').value.trim(),
+          genero:      document.getElementById('ins-genero').value.trim(),
+          telefono:    document.getElementById('ins-telefono').value.trim(),
+          correo:      document.getElementById('ins-correo').value.trim(),
+          direccion:   document.getElementById('ins-direccion').value.trim(),
+          programas,
+          salud:       document.getElementById('ins-salud').value.trim(),
+          acompanante: (inscripcionForm.querySelector('input[name="acompanante"]:checked')?.value || '')
+        };
+        inscripcionStatus.textContent = 'Enviando...';
+        inscripcionStatus.className = 'participa-form__status';
+        try {
+          await new ApiCliente().crearInscripcion(datos);
+          inscripcionStatus.textContent = '✔ Tu solicitud de inscripción fue enviada correctamente. Te contactaremos pronto.';
+          inscripcionStatus.className = 'participa-form__status participa-form__status--success';
+          inscripcionForm.reset();
+          limpiarFormulario(INS_CAMPOS);
+        } catch (err) {
+          inscripcionStatus.textContent = '⚠ Error al enviar la solicitud. Intenta de nuevo.';
+          inscripcionStatus.className = 'participa-form__status participa-form__status--error';
+        }
       });
     }
 
@@ -634,18 +656,43 @@
     const atencionForm   = document.getElementById('atencionForm');
     const atencionStatus = document.getElementById('atencionStatus');
     if (atencionForm && atencionStatus) {
-      atencionForm.addEventListener('submit', (e) => {
+      atencionForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const ok = validarFormulario(AT_CAMPOS);
-        if (!ok) {
+        const valido = validarFormulario(AT_CAMPOS);
+        if (!valido) {
           atencionStatus.textContent = 'Revisa y corrige los campos marcados en rojo antes de enviar.';
           atencionStatus.className = 'participa-form__status participa-form__status--error';
           return;
         }
-        atencionStatus.textContent = '✔ Tu solicitud de atención fue enviada correctamente. Nuestro equipo la revisará a la brevedad.';
-        atencionStatus.className = 'participa-form__status participa-form__status--success';
-        atencionForm.reset();
-        limpiarFormulario(AT_CAMPOS);
+        const atencion_tipo = Array.from(atencionForm.querySelectorAll('input[name="atencion_tipo"]:checked')).map(c => c.value);
+        const datos = {
+          tipo:            'atencion',
+          nombre_mayor:    document.getElementById('at-nombre').value.trim(),
+          edad:            document.getElementById('at-edad').value.trim(),
+          documento_mayor: document.getElementById('at-documento').value.trim(),
+          genero_mayor:    document.getElementById('at-genero').value.trim(),
+          movilidad:       document.getElementById('at-movilidad').value.trim(),
+          direccion:       document.getElementById('at-direccion').value.trim(),
+          salud:           document.getElementById('at-salud').value.trim(),
+          cuidador:        document.getElementById('at-cuidador').value.trim(),
+          parentesco:      document.getElementById('at-parentesco').value.trim(),
+          telefono:        document.getElementById('at-telefono').value.trim(),
+          correo:          document.getElementById('at-correo').value.trim(),
+          atencion_tipo,
+          observaciones:   document.getElementById('at-observaciones').value.trim()
+        };
+        atencionStatus.textContent = 'Enviando...';
+        atencionStatus.className = 'participa-form__status';
+        try {
+          await new ApiCliente().crearInscripcion(datos);
+          atencionStatus.textContent = '✔ Tu solicitud de atención fue enviada correctamente. Nuestro equipo la revisará a la brevedad.';
+          atencionStatus.className = 'participa-form__status participa-form__status--success';
+          atencionForm.reset();
+          limpiarFormulario(AT_CAMPOS);
+        } catch (err) {
+          atencionStatus.textContent = '⚠ Error al enviar la solicitud. Intenta de nuevo.';
+          atencionStatus.className = 'participa-form__status participa-form__status--error';
+        }
       });
     }
 

@@ -102,4 +102,72 @@ class ApiCliente {
   async eliminarHistoria(id) {
     return this._peticion('DELETE', `/historias/${id}`, null, true);
   }
+
+  /* ============================================================
+     FORMULARIOS PÚBLICOS
+  ============================================================ */
+
+  /**
+   * Envía un mensaje de contacto (público).
+   * @param {Object} datos - { nombre, correo, telefono, asunto, mensaje }
+   */
+  async enviarContacto(datos) {
+    return this._peticion('POST', '/contacto', datos);
+  }
+
+  /**
+   * Registra una inscripción o solicitud de atención (público).
+   * @param {Object} datos - Incluye campo tipo: 'inscripcion' | 'atencion'
+   */
+  async crearInscripcion(datos) {
+    return this._peticion('POST', '/inscripciones', datos);
+  }
+
+  /**
+   * Registra una solicitud de voluntariado (público).
+   * @param {Object} datos - { nombre, edad, telefono, correo }
+   */
+  async crearVoluntariado(datos) {
+    return this._peticion('POST', '/voluntariados', datos);
+  }
+
+  /**
+   * Registra una oferta de donación (público).
+   * @param {Object} datos - { nombre, telefono, correo, tipo_donacion, ... }
+   */
+  async crearDonacion(datos) {
+    return this._peticion('POST', '/donaciones', datos);
+  }
+
+  /* ============================================================
+     CONSULTAS DE ADMINISTRADOR
+  ============================================================ */
+
+  /**
+   * Obtiene todos los mensajes de contacto. Requiere rol admin.
+   */
+  async listarContactos() {
+    return this._peticion('GET', '/contacto', null, true);
+  }
+
+  /**
+   * Obtiene todas las inscripciones. Requiere rol admin.
+   */
+  async listarInscripciones() {
+    return this._peticion('GET', '/inscripciones', null, true);
+  }
+
+  /**
+   * Obtiene todas las solicitudes de voluntariado. Requiere rol admin.
+   */
+  async listarVoluntariados() {
+    return this._peticion('GET', '/voluntariados', null, true);
+  }
+
+  /**
+   * Obtiene todas las donaciones registradas. Requiere rol admin.
+   */
+  async listarDonaciones() {
+    return this._peticion('GET', '/donaciones', null, true);
+  }
 }
