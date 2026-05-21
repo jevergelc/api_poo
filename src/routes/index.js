@@ -6,7 +6,7 @@
  *
  * Este archivo centraliza todas las rutas del proyecto:
  *
- * ✅ Health Check
+ * ✅ Verificación de estado
  * ✅ Autenticación
  * ✅ Productos
  * ✅ Carrito
@@ -87,16 +87,16 @@ const terms = require("../controllers/terms.controller");
 const historias = require("../controllers/historias.controller");
 
 /* =========================================================
-   HEALTH CHECK
+   VERIFICACIÓN DE ESTADO
 ========================================================= */
 
 /**
  * Ruta para verificar si la API está funcionando
  *
  * Método: GET
- * Endpoint: /health
+ * Endpoint: /estado
  */
-router.get("/health", (req, res) => {
+router.get("/estado", (req, res) => {
   res.json({
     ok: true,
     data: {

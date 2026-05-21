@@ -1,0 +1,544 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actividades | Fundación Renacer Vida Feliz</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+
+    /* ===== SECCIÓN WRAPPER ===== */
+    .act-section {
+      padding: 64px 24px 80px;
+      background: #f4f9f4;
+    }
+    .act-wrap { max-width: 1120px; margin: 0 auto; }
+    .act-head { text-align: center; margin-bottom: 44px; }
+    .act-head h2 {
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 800; color: #1a3a1a; margin-bottom: 10px;
+    }
+    .act-head p {
+      font-size: 1.05rem; color: #556;
+      max-width: 520px; margin: 0 auto; line-height: 1.65;
+    }
+    .act-line {
+      display: block; width: 56px; height: 4px;
+      background: linear-gradient(90deg, #1a6e1a, #27a027);
+      border-radius: 2px; margin: 14px auto 0;
+    }
+
+    /* ===== GRID 5 TARJETAS (3 arriba + 2 abajo) ===== */
+    .taller-grid-5 {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 22px;
+    }
+    .taller-grid-5 .galeria-card {
+      border-color: #2563eb;
+      display: flex;
+      flex-direction: column;
+    }
+    .taller-grid-5 .galeria-card p {
+      flex: 1;
+    }
+    .taller-grid-5 .galeria-card__media {
+      height: 210px;
+      flex-shrink: 0;
+      aspect-ratio: unset;
+    }
+    .taller-grid-5 .galeria-card:nth-child(1),
+    .taller-grid-5 .galeria-card:nth-child(2),
+    .taller-grid-5 .galeria-card:nth-child(3) { grid-column: span 2; }
+    .taller-grid-5 .galeria-card:nth-child(4),
+    .taller-grid-5 .galeria-card:nth-child(5) { grid-column: span 3; }
+
+    /* Botón y galería expandible */
+    .taller-mas-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin: 12px 14px 16px;
+      background: #1a6e1a; color: #fff;
+      font-size: 1rem; font-weight: 800;
+      border: none; border-radius: 8px;
+      padding: 9px 18px; cursor: pointer;
+      transition: background .2s;
+    }
+    .taller-mas-btn:hover { background: #155a15; }
+    .taller-mas-btn .chev { transition: transform .28s; font-size: 0.75rem; }
+    .taller-mas-btn.abierto .chev { transform: rotate(180deg); }
+    .taller-fotos-extra {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 0 12px 14px;
+    }
+    .taller-fotos-extra.activa { display: grid; }
+    .taller-fotos-extra img {
+      width: 100%; aspect-ratio: 1; object-fit: cover;
+      border-radius: 8px; cursor: zoom-in; transition: transform .3s;
+    }
+    .taller-fotos-extra img:hover { transform: scale(1.04); }
+    .taller-fotos-extra .placeholder {
+      aspect-ratio: 1; border-radius: 8px;
+      background: #e8f5e8; border: 2px dashed #9acc9a;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 6px;
+      color: #5a8a5a; font-size: 0.78rem; font-weight: 700;
+      text-align: center;
+    }
+    .taller-fotos-extra .placeholder i { font-size: 1.6rem; opacity: .6; }
+
+    @media (max-width: 900px) {
+      .taller-grid-5 { grid-template-columns: repeat(2, 1fr); }
+      .taller-grid-5 .galeria-card:nth-child(n) { grid-column: span 1; }
+    }
+    @media (max-width: 540px) {
+      .taller-grid-5 { grid-template-columns: 1fr; }
+    }
+
+    /* ===== GALERÍA ===== */
+    .act-galeria {
+      padding: 64px 24px 80px;
+      background: #fff;
+    }
+    .gal-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .gal-grid__item {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: zoom-in;
+      background: #eef4ff;
+      border: 3px solid #1a6e1a;
+    }
+    .gal-grid__item img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform .32s;
+    }
+    .gal-grid__item:hover img { transform: scale(1.07); }
+    .gal-grid__item--empty {
+      background: #f0f4ff;
+      border: 2px dashed #93b4f0;
+      display: flex; align-items: center; justify-content: center;
+      color: #7a9fd4; font-size: 1.6rem;
+      cursor: default;
+    }
+    @media (max-width: 860px)  { .gal-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 600px)  { .gal-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 400px)  { .gal-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ===== LIGHTBOX ===== */
+    .lb-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.92);
+      display: none; align-items: center; justify-content: center;
+      z-index: 9999; cursor: zoom-out;
+      opacity: 0; transition: opacity .28s; padding: 20px;
+    }
+    .lb-overlay.lb-open { opacity: 1; }
+    .lb-overlay img {
+      max-width: 92vw; max-height: 88vh;
+      border-radius: 14px;
+      box-shadow: 0 12px 60px rgba(0,0,0,.7);
+      transform: scale(.94); transition: transform .28s;
+      cursor: default; display: block;
+    }
+    .lb-overlay.lb-open img { transform: scale(1); }
+    .lb-close {
+      position: fixed; top: 16px; right: 18px;
+      color: #fff; font-size: 1.4rem; cursor: pointer;
+      background: rgba(255,255,255,.15); border: 2px solid rgba(255,255,255,.3);
+      border-radius: 50%; width: 46px; height: 46px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .lb-close:hover { background: rgba(255,255,255,.28); }
+    .lb-caption {
+      position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+      color: #fff; font-size: 1rem; font-weight: 700;
+      background: rgba(0,0,0,.55); padding: 8px 28px;
+      border-radius: 999px; white-space: nowrap; pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-accent"></div>
+
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <header class="top-bar">
+    <div class="top-bar__inner">
+      <a href="index.html" class="top-bar__logo" aria-label="Ir al inicio">
+        <img src="assets/images/logo.webp" alt="Logo Fundación Renacer Vida Feliz" />
+      </a>
+      <div class="top-bar__info">
+        <a href="participa.html#inscripcion" class="info-block">
+          <div class="info-block__icon"><i class="fa-solid fa-heart"></i></div>
+          <div class="info-block__text">
+            <span class="info-block__title">Únete</span>
+            <span class="info-block__sub">Haz parte de nuestra familia</span>
+          </div>
+        </a>
+        <a href="tel:+573053123384" class="info-block">
+          <div class="info-block__icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="info-block__text">
+            <span class="info-block__title">+57 305 312 3384</span>
+            <span class="info-block__sub">Llámanos ahora</span>
+          </div>
+        </a>
+        <a href="https://maps.google.com/?q=Comedor+Comunitario+Jerusalen+Canteras+Bogota" target="_blank" rel="noopener" class="info-block">
+          <div class="info-block__icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="info-block__text">
+            <span class="info-block__title">Comedor Comunitario Jerusalén Canteras</span>
+            <span class="info-block__sub">Bogotá, Colombia</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== NAVEGACIÓN ===== -->
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <div class="navbar__inner">
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <ul class="navbar__menu" id="navMenu">
+        <li class="nav-item"><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
+        <li class="nav-item">
+          <a href="historia.html"><i class="fa-solid fa-people-group"></i> Quiénes Somos <i class="fa-solid fa-chevron-down"></i></a>
+          <ul class="dropdown">
+            <li><a href="historia.html#historia"><i class="fa-solid fa-book-open"></i> Nuestra Historia</a></li>
+            <li><a href="historia.html#mision"><i class="fa-solid fa-bullseye"></i> Misión y Visión</a></li>
+            <li><a href="historia.html#reconocimientos"><i class="fa-solid fa-award"></i> Reconocimientos</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="participa.html"><i class="fa-solid fa-hand-holding-heart"></i> Participa <i class="fa-solid fa-chevron-down"></i></a>
+          <ul class="dropdown">
+            <li><a href="participa.html#inscripcion"><i class="fa-solid fa-file-signature"></i> Formulario de Inscripción</a></li>
+            <li><a href="participa.html#atencion"><i class="fa-solid fa-user-nurse"></i> Atención al Adulto Mayor</a></li>
+          </ul>
+        </li>
+        <li class="nav-item activo">
+          <a href="actividades.html"><i class="fa-solid fa-star"></i> Actividades <i class="fa-solid fa-chevron-down"></i></a>
+          <ul class="dropdown">
+            <li><a href="actividades.html#talleres"><i class="fa-solid fa-palette"></i> Talleres y Recreación</a></li>
+            <li><a href="actividades.html#galeria"><i class="fa-solid fa-images"></i> Galería</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="historias.html"><i class="fa-solid fa-heart"></i> Historias</a></li>
+        <li class="nav-item">
+          <a href="ayudanos.html"><i class="fa-solid fa-hands-holding-child"></i> Ayúdanos <i class="fa-solid fa-chevron-down"></i></a>
+          <ul class="dropdown">
+            <li><a href="ayudanos.html#voluntariado"><i class="fa-solid fa-person-walking-arrow-right"></i> Voluntariado</a></li>
+            <li><a href="ayudanos.html#donaciones"><i class="fa-solid fa-gift"></i> Donaciones</a></li>
+          </ul>
+        </li>
+        <li class="nav-item nav-item--cta"><a href="index.html#contacto"><i class="fa-solid fa-envelope"></i> Contáctanos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+
+    <!-- TALLERES Y RECREACIÓN -->
+    <section class="act-section" id="talleres" aria-label="Talleres y Recreación">
+      <div class="act-wrap">
+        <header class="act-head">
+          <h2>Talleres y Recreación</h2>
+          <p>Conoce las actividades que hacemos cada semana con nuestra comunidad.</p>
+          <span class="act-line"></span>
+        </header>
+
+        <div class="taller-grid-5">
+
+          <!-- 1 Encuentro -->
+          <article class="galeria-card">
+            <div class="galeria-card__media">
+              <img src="assets/images/galeria-01.webp" alt="Encuentro de diversión" />
+            </div>
+            <h3>Encuentro de Diversión</h3>
+            <p>Jornada de integración con música y movimiento para compartir, reír y fortalecer la alegría grupal.</p>
+            <button class="taller-mas-btn" data-target="extra-encuentro">
+              <i class="fa-solid fa-images"></i> <span class="btn-text">Mostrar más fotos</span> <i class="fa-solid fa-chevron-down chev"></i>
+            </button>
+            <div class="taller-fotos-extra" id="extra-encuentro">
+              <img src="assets/images/encuentro-01.webp" alt="Encuentro de Diversión 1" />
+              <img src="assets/images/encuentro-02.webp" alt="Encuentro de Diversión 2" />
+              <img src="assets/images/encuentro-03.webp" alt="Encuentro de Diversión 3" />
+              <img src="assets/images/encuentro-04.webp" alt="Encuentro de Diversión 4" />
+              <img src="assets/images/encuentro-05.webp" alt="Encuentro de Diversión 5" />
+            </div>
+          </article>
+
+          <!-- 2 Bailes -->
+          <article class="galeria-card">
+            <div class="galeria-card__media">
+              <img src="assets/images/galeria-02.webp" alt="Presentación de baile" />
+            </div>
+            <h3>Bailes</h3>
+            <p>Muestra artística de danza donde nuestros adultos mayores expresan talento, cultura y trabajo en equipo.</p>
+            <button class="taller-mas-btn" data-target="extra-bailes">
+              <i class="fa-solid fa-images"></i> <span class="btn-text">Mostrar más fotos</span> <i class="fa-solid fa-chevron-down chev"></i>
+            </button>
+            <div class="taller-fotos-extra" id="extra-bailes">
+              <img src="assets/images/bailes-01.webp" alt="Bailes 1" />
+              <img src="assets/images/bailes-02.webp" alt="Bailes 2" />
+              <img src="assets/images/bailes-03.webp" alt="Bailes 3" />
+              <img src="assets/images/bailes-04.webp" alt="Bailes 4" />
+              <img src="assets/images/bailes-05.webp" alt="Bailes 5" />
+            </div>
+          </article>
+
+          <!-- 3 Manualidades -->
+          <article class="galeria-card">
+            <div class="galeria-card__media">
+              <img src="assets/images/galeria-04.webp" alt="Manualidades" />
+            </div>
+            <h3>Manualidades</h3>
+            <p>Espacio creativo donde desarrollamos trabajos manuales que estimulan la concentración y la motricidad fina.</p>
+            <button class="taller-mas-btn" data-target="extra-manualidades">
+              <i class="fa-solid fa-images"></i> <span class="btn-text">Mostrar más fotos</span> <i class="fa-solid fa-chevron-down chev"></i>
+            </button>
+            <div class="taller-fotos-extra" id="extra-manualidades">
+              <img src="assets/images/manualidades-01.webp" alt="Manualidades 1" />
+              <img src="assets/images/manualidades-02.webp" alt="Manualidades 2" />
+              <img src="assets/images/manualidades-03.webp" alt="Manualidades 3" />
+              <img src="assets/images/manualidades-04.webp" alt="Manualidades 4" />
+              <img src="assets/images/manualidades-05.webp" alt="Manualidades 5" />
+            </div>
+          </article>
+
+          <!-- 4 Juegos de Destreza -->
+          <article class="galeria-card">
+            <div class="galeria-card__media">
+              <img src="assets/images/galeria-05.webp" alt="Juegos de destreza" />
+            </div>
+            <h3>Juegos de Destreza</h3>
+            <p>Dinámicas lúdicas para fortalecer coordinación, atención y compañerismo en un ambiente de motivación.</p>
+            <button class="taller-mas-btn" data-target="extra-juegos">
+              <i class="fa-solid fa-images"></i> <span class="btn-text">Mostrar más fotos</span> <i class="fa-solid fa-chevron-down chev"></i>
+            </button>
+            <div class="taller-fotos-extra" id="extra-juegos">
+              <img src="assets/images/juegos-01.webp" alt="Juegos de Destreza 1" />
+              <img src="assets/images/juegos-02.webp" alt="Juegos de Destreza 2" />
+              <img src="assets/images/juegos-03.webp" alt="Juegos de Destreza 3" />
+              <img src="assets/images/juegos-04.webp" alt="Juegos de Destreza 4" />
+              <img src="assets/images/juegos-05.webp" alt="Juegos de Destreza 5" />
+            </div>
+          </article>
+
+          <!-- 5 Paseo -->
+          <article class="galeria-card">
+            <div class="galeria-card__media">
+              <img src="assets/images/galeria-06.webp" alt="Paseo comunitario" />
+            </div>
+            <h3>Paseo Comunitario</h3>
+            <p>Salida recreativa para compartir al aire libre, fortalecer vínculos y crear recuerdos significativos.</p>
+            <button class="taller-mas-btn" data-target="extra-paseo">
+              <i class="fa-solid fa-images"></i> <span class="btn-text">Mostrar más fotos</span> <i class="fa-solid fa-chevron-down chev"></i>
+            </button>
+            <div class="taller-fotos-extra" id="extra-paseo">
+              <img src="assets/images/paseos-01.webp" alt="Paseo Comunitario 1" />
+              <img src="assets/images/paseos-02.webp" alt="Paseo Comunitario 2" />
+              <img src="assets/images/paseos-03.webp" alt="Paseo Comunitario 3" />
+              <img src="assets/images/paseos-04.webp" alt="Paseo Comunitario 4" />
+              <img src="assets/images/paseos-05.webp" alt="Paseo Comunitario 5" />
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- GALERÍA -->
+    <section class="act-galeria" id="galeria" aria-label="Galería">
+      <div class="act-wrap">
+        <header class="act-head">
+          <h2>Galería</h2>
+          <p>Fotos de nuestra comunidad a lo largo del tiempo.</p>
+          <span class="act-line"></span>
+        </header>
+
+        <div class="gal-grid">
+          <div class="gal-grid__item"><img src="assets/galeria/foto-01.webp" alt="Galería 1" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-02.webp" alt="Galería 2" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-03.webp" alt="Galería 3" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-04.webp" alt="Galería 4" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-05.webp" alt="Galería 5" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-06.webp" alt="Galería 6" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-07.webp" alt="Galería 7" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-08.webp" alt="Galería 8" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-09.webp" alt="Galería 9" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-10.webp" alt="Galería 10" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-11.webp" alt="Galería 11" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-12.webp" alt="Galería 12" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-13.webp" alt="Galería 13" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-14.webp" alt="Galería 14" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-15.webp" alt="Galería 15" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-16.webp" alt="Galería 16" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-17.webp" alt="Galería 17" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-18.webp" alt="Galería 18" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-19.webp" alt="Galería 19" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-20.webp" alt="Galería 20" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-21.webp" alt="Galería 21" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-22.webp" alt="Galería 22" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-23.webp" alt="Galería 23" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-24.webp" alt="Galería 24" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-25.webp" alt="Galería 25" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-26.webp" alt="Galería 26" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-27.webp" alt="Galería 27" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-28.webp" alt="Galería 28" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-29.webp" alt="Galería 29" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-30.webp" alt="Galería 30" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-31.webp" alt="Galería 31" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-32.webp" alt="Galería 32" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-33.webp" alt="Galería 33" /></div>
+          <div class="gal-grid__item"><img src="assets/galeria/foto-34.webp" alt="Galería 34" /></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTONES FLOTANTES -->
+  <div class="social-float" aria-label="Canales de contacto rápido">
+    <a href="https://wa.me/573053123384" target="_blank" rel="noopener" class="social-float__btn social-float__btn--whatsapp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://www.facebook.com/share/1BfNWwnKjM/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-float__btn social-float__btn--facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="mailto:furevf@hotmail.com" class="social-float__btn social-float__btn--mail" aria-label="Correo"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__accent"></div>
+    <div class="footer__main">
+      <div class="footer__inner">
+        <div class="footer__col footer__col--brand">
+          <img src="assets/images/logo.webp" alt="Logo Fundación Renacer Vida Feliz" class="footer__logo" />
+          <p class="footer__desc">Acompañamos a nuestros adultos mayores con amor, dignidad y alegría. Juntos construimos una vejez feliz en Bogotá.</p>
+          <div class="footer__socials">
+            <a href="https://wa.me/573053123384" target="_blank" rel="noopener" class="social-btn social-btn--whatsapp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></a>
+            <a href="https://www.facebook.com/share/1BfNWwnKjM/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-btn social-btn--facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i><span>Facebook</span></a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__title"><i class="fa-solid fa-sitemap"></i> Navegación</h4>
+          <ul class="footer__links">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Inicio</a></li>
+            <li><a href="historia.html"><i class="fa-solid fa-chevron-right"></i> Quiénes Somos</a></li>
+            <li><a href="participa.html"><i class="fa-solid fa-chevron-right"></i> Participa</a></li>
+            <li><a href="actividades.html"><i class="fa-solid fa-chevron-right"></i> Actividades</a></li>
+            <li><a href="historias.html"><i class="fa-solid fa-chevron-right"></i> Historias</a></li>
+            <li><a href="ayudanos.html"><i class="fa-solid fa-chevron-right"></i> Ayúdanos</a></li>
+            <li><a href="index.html#contacto"><i class="fa-solid fa-chevron-right"></i> Contáctanos</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__title"><i class="fa-solid fa-address-book"></i> Contacto</h4>
+          <ul class="footer__contact">
+            <li><div class="contact-icon"><i class="fa-solid fa-phone"></i></div><div><span class="contact-label">Teléfonos</span><a href="tel:+573053123384">+57 305 312 3384</a></div></li>
+            <li><div class="contact-icon"><i class="fa-solid fa-envelope"></i></div><div><span class="contact-label">Correo electrónico</span><a href="mailto:furevf@hotmail.com">furevf@hotmail.com</a></div></li>
+            <li><div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div><div><span class="contact-label">Dirección</span><span>Comedor Comunitario Jerusalén Canteras</span><span>Bogotá, Colombia</span></div></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__col--map">
+          <h4 class="footer__title"><i class="fa-solid fa-map-location-dot"></i> Encuéntranos</h4>
+          <div class="footer__map">
+            <iframe src="https://maps.google.com/maps?q=Carrera+49D+%2368G-15+Sur,+Bogot%C3%A1,+Colombia&output=embed&z=16" width="100%" height="200" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Fundación Renacer Vida Feliz"></iframe>
+          </div>
+          <a href="https://maps.google.com/?q=Carrera+49D+68G-15+Sur,+Bogota,+Colombia" target="_blank" rel="noopener" class="footer__map-btn"><i class="fa-solid fa-diamond-turn-right"></i> Cómo llegar</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__bottom-inner">
+        <p>© 2026 <strong>Fundación Renacer Vida Feliz</strong>. Todos los derechos reservados.</p>
+        <p>Hecho con <i class="fa-solid fa-heart" style="color:#4ade80"></i> para nuestros abuelos en Bogotá, Colombia.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Menú móvil
+    const toggle = document.getElementById('navToggle');
+    const menu   = document.getElementById('navMenu');
+    toggle.addEventListener('click', () => {
+      const abierto = menu.classList.toggle('abierto');
+      toggle.setAttribute('aria-expanded', abierto);
+      toggle.querySelector('i').className = abierto ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    });
+    document.querySelectorAll('.nav-item > a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const item = this.closest('.nav-item');
+        const dd   = item.querySelector('.dropdown');
+        if (!dd || window.innerWidth > 768) return;
+        e.preventDefault();
+        const open = item.classList.toggle('desplegado');
+        const chev = this.querySelector('.fa-chevron-down');
+        if (chev) chev.style.transform = open ? 'rotate(180deg)' : '';
+      });
+    });
+
+    // Lightbox
+    const lbOv = document.createElement('div');
+    lbOv.className = 'lb-overlay';
+    lbOv.innerHTML =
+      '<button class="lb-close" id="lbClose"><i class="fa-solid fa-xmark"></i></button>' +
+      '<img id="lbImg" src="" alt="" />' +
+      '<p class="lb-caption" id="lbCaption"></p>';
+    document.body.appendChild(lbOv);
+    const lbI = document.getElementById('lbImg');
+    const lbC = document.getElementById('lbCaption');
+    function openLb(src, alt, cap) {
+      lbI.src = src; lbI.alt = alt; lbC.textContent = cap;
+      lbOv.style.display = 'flex';
+      requestAnimationFrame(() => lbOv.classList.add('lb-open'));
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLb() {
+      lbOv.classList.remove('lb-open');
+      setTimeout(() => { lbOv.style.display = 'none'; lbI.src = ''; }, 280);
+      document.body.style.overflow = '';
+    }
+    // Expandir/colapsar fotos extra
+    document.querySelectorAll('.taller-mas-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const el     = document.getElementById(btn.dataset.target);
+        const isOpen = el.classList.toggle('activa');
+        btn.classList.toggle('abierto', isOpen);
+        btn.querySelector('.btn-text').textContent = isOpen ? 'Ocultar fotos' : 'Mostrar más fotos';
+      });
+    });
+    // Lightbox en fotos de portada
+    document.querySelectorAll('.galeria-card__media').forEach(wrap => {
+      const img = wrap.querySelector('img');
+      const cap = wrap.closest('.galeria-card').querySelector('h3')?.textContent || '';
+      wrap.style.cursor = 'zoom-in';
+      wrap.addEventListener('click', () => openLb(img.src, img.alt, cap));
+    });
+    // Lightbox en fotos extra (reales, no placeholders)
+    document.querySelectorAll('.taller-fotos-extra img').forEach(img => {
+      img.addEventListener('click', () => openLb(img.src, img.alt, img.alt));
+    });
+    // Lightbox en galería
+    document.querySelectorAll('.gal-grid__item img').forEach(img => {
+      img.addEventListener('click', () => openLb(img.src, img.alt, ''));
+    });
+    document.getElementById('lbClose').addEventListener('click', e => { e.stopPropagation(); closeLb(); });
+    lbOv.addEventListener('click', closeLb);
+    lbI.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+  </script>
+</body>
+</html>

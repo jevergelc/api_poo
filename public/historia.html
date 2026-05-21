@@ -1,0 +1,435 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestra Historia | Fundación Renacer Vida Feliz</title>
+
+  <!-- Google Fonts: Nunito (excelente legibilidad para adultos mayores) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- Franja decorativa superior -->
+  <div class="top-accent"></div>
+
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <header class="top-bar">
+    <div class="top-bar__inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="top-bar__logo" aria-label="Ir al inicio">
+        <img src="assets/images/logo.webp" alt="Logo Fundación Renacer Vida Feliz" />
+      </a>
+
+      <!-- Bloques informativos -->
+      <div class="top-bar__info">
+
+        <!-- Bloque 1: Únete -->
+        <a href="participa.html#inscripcion" class="info-block">
+          <div class="info-block__icon">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <div class="info-block__text">
+            <span class="info-block__title">Únete</span>
+            <span class="info-block__sub">Haz parte de nuestra familia</span>
+          </div>
+        </a>
+
+        <!-- Bloque 2: Teléfono -->
+        <a href="tel:+573053123384" class="info-block">
+          <div class="info-block__icon">
+            <i class="fa-solid fa-phone"></i>
+          </div>
+          <div class="info-block__text">
+            <span class="info-block__title">+57 305 312 3384</span>
+            <span class="info-block__sub">Llámanos ahora</span>
+          </div>
+        </a>
+
+        <!-- Bloque 3: Dirección -->
+        <a href="https://maps.google.com/?q=Comedor+Comunitario+Jerusalen+Canteras+Bogota" target="_blank" rel="noopener" class="info-block">
+          <div class="info-block__icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div class="info-block__text">
+            <span class="info-block__title">Comedor Comunitario Jerusalén Canteras</span>
+            <span class="info-block__sub">Bogotá, Colombia</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== BARRA DE NAVEGACIÓN ===== -->
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <div class="navbar__inner">
+
+      <!-- Botón hamburguesa (móvil) -->
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="navbar__menu" id="navMenu">
+
+        <!-- 1. Inicio -->
+        <li class="nav-item">
+          <a href="index.html">
+            <i class="fa-solid fa-house"></i> Inicio
+          </a>
+        </li>
+
+        <!-- 2. Quiénes Somos -->
+        <li class="nav-item activo">
+          <a href="#historia">
+            <i class="fa-solid fa-people-group"></i> Quiénes Somos
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <ul class="dropdown">
+            <li><a href="#historia"><i class="fa-solid fa-book-open"></i> Nuestra Historia</a></li>
+            <li><a href="#mision"><i class="fa-solid fa-bullseye"></i> Misión y Visión</a></li>
+            <li><a href="#reconocimientos"><i class="fa-solid fa-award"></i> Reconocimientos</a></li>
+          </ul>
+        </li>
+
+        <!-- 3. Participa -->
+        <li class="nav-item">
+          <a href="participa.html">
+            <i class="fa-solid fa-hand-holding-heart"></i> Participa
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <ul class="dropdown">
+            <li><a href="participa.html#inscripcion"><i class="fa-solid fa-file-signature"></i> Formulario de Inscripción</a></li>
+            <li><a href="participa.html#atencion"><i class="fa-solid fa-user-nurse"></i> Atención al Adulto Mayor</a></li>
+          </ul>
+        </li>
+
+        <!-- 4. Actividades -->
+        <li class="nav-item">
+          <a href="#actividades">
+            <i class="fa-solid fa-star"></i> Actividades
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <ul class="dropdown">
+            <li><a href="#eventos"><i class="fa-solid fa-calendar-days"></i> Eventos</a></li>
+            <li><a href="#talleres"><i class="fa-solid fa-palette"></i> Talleres y Recreación</a></li>
+            <li><a href="#danza"><i class="fa-solid fa-music"></i> Grupo de Danza</a></li>
+            <li><a href="assets/galeria/"><i class="fa-solid fa-images"></i> Galería</a></li>
+          </ul>
+        </li>
+
+        <!-- 5. Historias -->
+        <li class="nav-item">
+          <a href="historias.html">
+            <i class="fa-solid fa-heart"></i> Historias
+          </a>
+        </li>
+
+        <!-- 6. Ayúdanos -->
+        <li class="nav-item">
+          <a href="ayudanos.html">
+            <i class="fa-solid fa-hands-holding-child"></i> Ayúdanos
+          </a>
+        </li>
+
+        <!-- 7. Contáctanos (CTA) -->
+        <li class="nav-item nav-item--cta">
+          <a href="#contacto">
+            <i class="fa-solid fa-envelope"></i> Contáctanos
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <main class="historia-page" id="historia">
+    <section class="historia-page__hero">
+      <div class="historia-page__wrap">
+        <p class="historia-page__eyebrow">Quiénes Somos</p>
+        <h1>Nuestra Historia</h1>
+        <p>
+          Un camino construido con servicio, respeto y compromiso por el bienestar de nuestros adultos mayores.
+        </p>
+      </div>
+    </section>
+
+    <section class="historia-page__story">
+      <div class="historia-page__wrap">
+        <div class="historia-page__story-grid">
+          <article class="historia-page__story-text">
+            <p>
+              <strong>Fundación Renacer Vida Feliz</strong>, siglas <strong>FUREVF</strong>, es una Organización sin
+              Ánimo de Lucro con Número de Identificación Tributaria
+              <strong>900.253.332-0</strong>.
+            </p>
+            <p>
+              Se organizó legalmente el <strong>7 de noviembre de 2008</strong> bajo el Número
+              <strong>00144916</strong> del Libro I de Entidades sin Ánimo de Lucro, inscrita ante la Cámara de
+              Comercio de Bogotá y representada por el señor <strong>Jorge Enrique Velásquez Rodríguez</strong>.
+            </p>
+            <p>
+              La fundación se consolidó en el <strong>barrio Jerusalén Canteras</strong>, donde comenzó su trabajo
+              comunitario para acompañar a las familias en condición de vulnerabilidad, creando espacios de apoyo,
+              integración y crecimiento humano.
+            </p>
+            <p>
+              Su objeto principal es promover el desarrollo económico, social y cultural de las familias, impulsando
+              acciones solidarias que mejoran la calidad de vida y proyectan bienestar a toda la comunidad.
+            </p>
+          </article>
+
+          <figure class="historia-page__story-side-image">
+            <img src="assets/images/historia-doc.webp" alt="Acto de reconocimiento institucional de la fundación" />
+          </figure>
+        </div>
+
+        <figure class="historia-page__story-full-image">
+          <img src="assets/images/historia-sede.webp" alt="Sede comunal en Jerusalén Canteras donde inició la fundación" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="historia-page__mission" id="mision">
+      <div class="historia-page__wrap">
+        <header class="historia-page__section-head">
+          <h2>Misión y Visión</h2>
+          <span class="historia-page__section-line"></span>
+        </header>
+
+        <div class="historia-page__mission-grid">
+          <article class="historia-page__mission-card" id="mision-texto">
+            <h3>Misión</h3>
+            <p>
+              La Fundación Renacer Vida Feliz se encarga de prestar servicios de recreación y actividades físicas
+              para la población de adulto mayor de la localidad 19 de Ciudad Bolívar, en Bogotá.
+            </p>
+            <p>
+              Nuestro propósito es motivar e incentivar al adulto mayor para que mejore su calidad de vida y se
+              sienta una persona activa, saludable, participativa y productiva para la comunidad.
+            </p>
+          </article>
+
+          <article class="historia-page__mission-card" id="vision">
+            <h3>Visión</h3>
+            <p>
+              Ser una organización líder para ayudar y brindar servicios a la comunidad y a la población más
+              vulnerable de la localidad 19 de Ciudad Bolívar, a través de alianzas con empresas y entidades que
+              aporten diferentes contribuciones para incrementar los ingresos y fortalecer la estructura
+              organizacional y administrativa de la Fundación.
+            </p>
+            <p>
+              Para el año 2028, la Fundación Renacer Vida Feliz aumentará a 300 su número de asociados.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="historia-page__awards" id="reconocimientos">
+      <div class="historia-page__wrap">
+        <header class="historia-page__section-head">
+          <h2>Reconocimientos</h2>
+          <span class="historia-page__section-line"></span>
+        </header>
+
+        <p class="historia-page__awards-intro">
+          Este apartado reúne reconocimientos y certificaciones que respaldan el trabajo comunitario realizado por la
+          Fundación Renacer Vida Feliz a lo largo de su trayectoria.
+        </p>
+
+        <div class="historia-page__awards-grid">
+          <article class="historia-page__award-card">
+            <img src="assets/images/reconocimiento-01.webp" alt="Reconocimiento institucional 1" />
+          </article>
+          <article class="historia-page__award-card">
+            <img src="assets/images/reconocimiento-02.webp" alt="Reconocimiento institucional 2" />
+          </article>
+          <article class="historia-page__award-card">
+            <img src="assets/images/reconocimiento-03.webp" alt="Reconocimiento institucional 3" />
+          </article>
+          <article class="historia-page__award-card">
+            <img src="assets/images/reconocimiento-04.webp" alt="Reconocimiento institucional 4" />
+          </article>
+          <article class="historia-page__award-card">
+            <img src="assets/images/reconocimiento-05.webp" alt="Reconocimiento institucional 5" />
+          </article>
+          <article class="historia-page__award-card">
+            <img src="assets/images/reconocimiento-06.webp" alt="Reconocimiento institucional 6" />
+          </article>
+          <article class="historia-page__award-card">
+            <img src="assets/images/reconocimiento-07.webp" alt="Reconocimiento institucional 7" />
+          </article>
+          <article class="historia-page__award-card">
+            <img src="assets/images/reconocimiento-08.webp" alt="Reconocimiento institucional 8" />
+          </article>
+          <article class="historia-page__award-card">
+            <img src="assets/images/reconocimiento-09.webp" alt="Reconocimiento institucional 9" />
+          </article>
+          <article class="historia-page__award-card">
+            <img src="assets/images/reconocimiento-10.webp" alt="Reconocimiento institucional 10" />
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== BOTONES FLOTANTES DE CONTACTO ===== -->
+  <div class="social-float" aria-label="Canales de contacto rápido">
+    <a href="https://wa.me/573053123384" target="_blank" rel="noopener" class="social-float__btn social-float__btn--whatsapp" aria-label="Escribir por WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="https://www.facebook.com/share/1BfNWwnKjM/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-float__btn social-float__btn--facebook" aria-label="Ir a Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a href="mailto:furevf@hotmail.com" class="social-float__btn social-float__btn--mail" aria-label="Enviar correo electrónico">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+
+    <!-- Franja decorativa superior del footer -->
+    <div class="footer__accent"></div>
+
+    <div class="footer__main">
+      <div class="footer__inner">
+
+        <!-- Columna 1: Marca + redes -->
+        <div class="footer__col footer__col--brand">
+          <img src="assets/images/logo.webp" alt="Logo Fundación Renacer Vida Feliz" class="footer__logo" />
+          <p class="footer__desc">
+            Acompañamos a nuestros adultos mayores con amor, dignidad y alegría. Juntos construimos una vejez feliz en Bogotá.
+          </p>
+          <div class="footer__socials">
+            <a href="https://wa.me/573053123384" target="_blank" rel="noopener" class="social-btn social-btn--whatsapp" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>WhatsApp</span>
+            </a>
+            <a href="https://www.facebook.com/share/1BfNWwnKjM/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-btn social-btn--facebook" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+              <span>Facebook</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna 2: Navegación rápida -->
+        <div class="footer__col">
+          <h4 class="footer__title">
+            <i class="fa-solid fa-sitemap"></i> Navegación
+          </h4>
+          <ul class="footer__links">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Inicio</a></li>
+            <li><a href="#historia"><i class="fa-solid fa-chevron-right"></i> Nuestra Historia</a></li>
+            <li><a href="#mision"><i class="fa-solid fa-chevron-right"></i> Misión y Visión</a></li>
+            <li><a href="#reconocimientos"><i class="fa-solid fa-chevron-right"></i> Reconocimientos</a></li>
+            <li><a href="index.html#galeria"><i class="fa-solid fa-chevron-right"></i> Actividades</a></li>
+            <li><a href="historias.html"><i class="fa-solid fa-chevron-right"></i> Historias</a></li>
+            <li><a href="index.html#contacto"><i class="fa-solid fa-chevron-right"></i> Contáctanos</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Contacto -->
+        <div class="footer__col">
+          <h4 class="footer__title">
+            <i class="fa-solid fa-address-book"></i> Contacto
+          </h4>
+          <ul class="footer__contact">
+            <li>
+              <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <span class="contact-label">Teléfonos</span>
+                <a href="tel:+573053123384">+57 305 312 3384</a>
+              </div>
+            </li>
+            <li>
+              <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <span class="contact-label">Correo electrónico</span>
+                <a href="mailto:furevf@hotmail.com">furevf@hotmail.com</a>
+              </div>
+            </li>
+            <li>
+              <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <span class="contact-label">Dirección</span>
+                <span>Comedor Comunitario Jerusalén Canteras</span>
+                <span>Bogotá, Colombia</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Columna 4: Mapa -->
+        <div class="footer__col footer__col--map">
+          <h4 class="footer__title">
+            <i class="fa-solid fa-map-location-dot"></i> Encuéntranos
+          </h4>
+          <div class="footer__map">
+            <iframe
+              src="https://maps.google.com/maps?q=Carrera+49D+%2368G-15+Sur,+Bogot%C3%A1,+Colombia&output=embed&z=16"
+              width="100%"
+              height="200"
+              style="border:0; border-radius: 12px;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación Fundación Renacer Vida Feliz">
+            </iframe>
+          </div>
+          <a href="https://maps.google.com/?q=Carrera+49D+68G-15+Sur,+Bogota,+Colombia" target="_blank" rel="noopener" class="footer__map-btn">
+            <i class="fa-solid fa-diamond-turn-right"></i> Cómo llegar
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Barra inferior copyright -->
+    <div class="footer__bottom">
+      <div class="footer__bottom-inner">
+        <p>© 2026 <strong>Fundación Renacer Vida Feliz</strong>. Todos los derechos reservados.</p>
+        <p>Hecho con <i class="fa-solid fa-heart" style="color:#4ade80"></i> para nuestros abuelos en Bogotá, Colombia.</p>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Script menú móvil -->
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const menu   = document.getElementById('navMenu');
+
+    toggle.addEventListener('click', () => {
+      const abierto = menu.classList.toggle('abierto');
+      toggle.setAttribute('aria-expanded', abierto);
+      toggle.querySelector('i').className = abierto
+        ? 'fa-solid fa-xmark'
+        : 'fa-solid fa-bars';
+    });
+
+    // Dropdowns en móvil: abrir/cerrar con clic
+    document.querySelectorAll('.nav-item > a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const item     = this.closest('.nav-item');
+        const dropdown = item.querySelector('.dropdown');
+        if (!dropdown || window.innerWidth > 768) return;
+        e.preventDefault();
+        const abierto = item.classList.toggle('desplegado');
+        const chevron = this.querySelector('.fa-chevron-down');
+        if (chevron) chevron.style.transform = abierto ? 'rotate(180deg)' : '';
+      });
+    });
+  </script>
+</body>
+</html>

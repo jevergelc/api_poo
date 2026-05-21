@@ -1,0 +1,488 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayúdanos | Fundación Renacer Vida Feliz</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    /* ===== PANELES DE AYUDANOS ===== */
+    .ayudanos-page__content { padding: 56px 0 72px; }
+    .ayudanos-page__wrap    { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    @keyframes ayudaFadeUp {
+      from { opacity: 0; transform: translateY(38px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes ayudaPulse {
+      0%,100% { box-shadow: 0 4px 14px rgba(26,82,176,.24); }
+      50%      { box-shadow: 0 4px 22px rgba(26,82,176,.48); }
+    }
+    @keyframes verdeGlow {
+      0%,100% { box-shadow: 0 4px 14px rgba(26,110,26,.24); }
+      50%      { box-shadow: 0 4px 22px rgba(26,110,26,.48); }
+    }
+
+    .ayuda-panel {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 48px;
+      opacity: 0;
+      transform: translateY(38px);
+      transition: box-shadow .3s;
+    }
+    .ayuda-panel.av-visible {
+      animation: ayudaFadeUp .65s ease both;
+    }
+    .ayuda-panel--voluntariado {
+      box-shadow: 0 8px 36px rgba(26,110,26,.15), 0 0 0 3px rgba(26,110,26,.22);
+    }
+    .ayuda-panel--donaciones {
+      box-shadow: 0 8px 36px rgba(26,82,176,.15), 0 0 0 3px rgba(26,82,176,.22);
+    }
+    .ayuda-panel--voluntariado:hover {
+      box-shadow: 0 12px 44px rgba(26,110,26,.22), 0 0 0 3px rgba(26,110,26,.35);
+    }
+    .ayuda-panel--donaciones:hover {
+      box-shadow: 0 12px 44px rgba(26,82,176,.22), 0 0 0 3px rgba(26,82,176,.35);
+    }
+
+    /* Lateral voluntariado */
+    .ayuda-panel--voluntariado .ayuda-lateral {
+      background: linear-gradient(155deg, #145a14 0%, #27a027 100%);
+    }
+    /* Lateral donaciones */
+    .ayuda-panel--donaciones .ayuda-lateral {
+      background: linear-gradient(155deg, #163c8a 0%, #2a6fda 100%);
+    }
+
+    .ayuda-lateral {
+      padding: 44px 26px 36px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: filter .25s;
+    }
+    .ayuda-panel:hover .ayuda-lateral { filter: brightness(1.07); }
+    .ayuda-lateral__icon { font-size: 3rem; opacity: .9; }
+    .ayuda-lateral__titulo {
+      font-size: 1.18rem;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+    .ayuda-lateral__desc {
+      font-size: 1rem;
+      opacity: .88;
+      line-height: 1.6;
+    }
+    .ayuda-lateral__lista {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      font-size: 0.83rem;
+      opacity: .92;
+      margin-top: 6px;
+    }
+    .ayuda-lateral__lista li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .ayuda-lateral__lista li::before {
+      content: "✓";
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Panel de formulario */
+    .ayuda-form-wrap {
+      background: #fff;
+      padding: 36px 32px 32px;
+    }
+    .ayuda-form__titulo {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .ayuda-panel--voluntariado .ayuda-form__titulo { color: #1a6e1a; }
+    .ayuda-panel--donaciones  .ayuda-form__titulo { color: #1a52b0; }
+
+    .ayuda-form__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 18px;
+    }
+    .ayuda-form__field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .ayuda-form__field--full { grid-column: 1 / -1; }
+
+    .ayuda-form__field label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2c4a4a;
+    }
+    .ayuda-form__field input,
+    .ayuda-form__field select,
+    .ayuda-form__field textarea {
+      border: 1.5px solid #dde8dd;
+      border-radius: 9px;
+      padding: 9px 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #f9fbf9;
+      color: #333;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    .ayuda-form__field input:focus,
+    .ayuda-form__field select:focus,
+    .ayuda-form__field textarea:focus {
+      background: #fff;
+      border-color: #1a6e1a;
+      box-shadow: 0 0 0 3px rgba(26,110,26,.1);
+    }
+    .ayuda-panel--donaciones .ayuda-form__field input:focus,
+    .ayuda-panel--donaciones .ayuda-form__field select:focus,
+    .ayuda-panel--donaciones .ayuda-form__field textarea:focus {
+      border-color: #1a52b0;
+      box-shadow: 0 0 0 3px rgba(26,82,176,.12);
+    }
+    .ayuda-form__field textarea { resize: vertical; min-height: 82px; }
+
+    .ayuda-form__seccion {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      padding-bottom: 4px;
+      border-bottom: 1.5px solid #e0ece0;
+      grid-column: 1 / -1;
+      margin-top: 6px;
+    }
+    .ayuda-panel--voluntariado .ayuda-form__seccion { color: #1a6e1a; }
+    .ayuda-panel--donaciones  .ayuda-form__seccion { color: #1a52b0; border-bottom-color: #c8d8f8; }
+
+    .ayuda-checks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 3px;
+    }
+    .ayuda-form__checks label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+    }
+    .ayuda-checks input[type="checkbox"],
+    .ayuda-checks input[type="radio"] {
+      width: 15px; height: 15px; cursor: pointer;
+    }
+    .ayuda-panel--voluntariado .ayuda-checks input { accent-color: #1a6e1a; }
+    .ayuda-panel--donaciones  .ayuda-checks input { accent-color: #1a52b0; }
+
+    .ayuda-form__actions {
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      grid-column: 1 / -1;
+    }
+    .ayuda-btn {
+      border: none;
+      border-radius: 10px;
+      padding: 11px 26px;
+      font-size: 1rem;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all .22s;
+      color: #fff;
+    }
+    .ayuda-btn--verde {
+      background: linear-gradient(135deg, #1a6e1a 0%, #237823 100%);
+      box-shadow: 0 4px 14px rgba(26,110,26,.24);
+    }
+    .ayuda-btn--verde:hover {
+      box-shadow: 0 7px 22px rgba(26,110,26,.34);
+      transform: translateY(-1px);
+    }
+    .ayuda-btn--dorado {
+      background: linear-gradient(135deg, #163c8a 0%, #2a6fda 100%);
+      box-shadow: 0 4px 14px rgba(26,82,176,.24);
+      animation: ayudaPulse 2.8s ease-in-out infinite;
+    }
+    .ayuda-btn--dorado:hover {
+      box-shadow: 0 7px 22px rgba(26,82,176,.42);
+      transform: translateY(-1px);
+      animation: none;
+    }
+    .ayuda-btn--verde {
+      animation: verdeGlow 2.8s ease-in-out infinite;
+    }
+    .ayuda-btn--verde:hover { animation: none; }
+
+    .ayuda-form__status { font-size: 0.87rem; font-weight: 700; }
+    .ayuda-form__status--ok  { color: #1a6e1a; }
+    .ayuda-form__status--err { color: #c0392b; }
+
+    .ayuda-field-error {
+      display: block;
+      color: #c0392b;
+      font-size: 0.79rem;
+      font-weight: 700;
+      margin-top: 3px;
+      min-height: 1em;
+      line-height: 1.3;
+    }
+    .ayuda-form__field input.av-invalido,
+    .ayuda-form__field select.av-invalido,
+    .ayuda-form__field textarea.av-invalido {
+      border-color: #c0392b !important;
+      box-shadow: 0 0 0 3px rgba(192,57,43,.11);
+    }
+    .ayuda-form__field input.av-valido { border-color: #1a6e1a !important; }
+
+    @media (max-width: 800px) {
+      .ayuda-panel { grid-template-columns: 1fr; }
+      .ayuda-lateral { padding: 28px 22px; flex-direction: row; flex-wrap: wrap; gap: 10px; align-items: flex-start; }
+      .ayuda-lateral__lista { display: none; }
+      .ayuda-form-wrap { padding: 24px 18px 28px; }
+      .ayuda-form__grid { grid-template-columns: 1fr; }
+      .ayuda-form__field--full { grid-column: 1; }
+      .ayuda-form__seccion,
+      .ayuda-form__actions { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+        </div>
+      </a>
+      <a href="tel:+573053123384" class="info-block">
+        <div class="info-block__icon"><i class="fa-solid fa-phone"></i></div>
+        <div class="info-block__text">
+          <span class="info-block__title">+57 305 312 3384</span>
+          <span class="info-block__sub">Llámanos ahora</span>
+        </div>
+      </a>
+      <a href="https://maps.google.com/?q=Comedor+Comunitario+Jerusalen+Canteras+Bogota" target="_blank" rel="noopener" class="info-block">
+        <div class="info-block__icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="info-block__text">
+          <span class="info-block__title">Comedor Comunitario Jerusalén Canteras</span>
+          <span class="info-block__sub">Bogotá, Colombia</span>
+          <h4 class="footer__title"><i class="fa-solid fa-address-book"></i> Contacto</h4>
+          <ul class="footer__contact">
+            <li><div class="contact-icon"><i class="fa-solid fa-phone"></i></div><div><span class="contact-label">Teléfonos</span><a href="tel:+573053123384">+57 305 312 3384</a></div></li>
+            <li><div class="contact-icon"><i class="fa-solid fa-envelope"></i></div><div><span class="contact-label">Correo electrónico</span><a href="mailto:furevf@hotmail.com">furevf@hotmail.com</a></div></li>
+            <li><div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div><div><span class="contact-label">Dirección</span><span>Comedor Comunitario Jerusalén Canteras</span><span>Bogotá, Colombia</span></div></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__col--map">
+          <h4 class="footer__title"><i class="fa-solid fa-map-location-dot"></i> Encuéntranos</h4>
+          <div class="footer__map">
+            <iframe src="https://maps.google.com/maps?q=Carrera+49D+%2368G-15+Sur,+Bogot%C3%A1,+Colombia&output=embed&z=16" width="100%" height="200" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Fundación Renacer Vida Feliz"></iframe>
+          </div>
+          <a href="https://maps.google.com/?q=Carrera+49D+68G-15+Sur,+Bogota,+Colombia" target="_blank" rel="noopener" class="footer__map-btn"><i class="fa-solid fa-diamond-turn-right"></i> Cómo llegar</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__bottom-inner">
+        <p>© 2026 <strong>Fundación Renacer Vida Feliz</strong>. Todos los derechos reservados.</p>
+        <p>Hecho con <i class="fa-solid fa-heart" style="color:#4ade80"></i> para nuestros abuelos en Bogotá, Colombia.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== MENÚ =====
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    toggle.addEventListener('click', () => {
+      const abierto = menu.classList.toggle('abierto');
+      toggle.setAttribute('aria-expanded', abierto);
+      toggle.querySelector('i').className = abierto ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    });
+    document.querySelectorAll('.nav-item > a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const item = this.closest('.nav-item');
+        const dropdown = item.querySelector('.dropdown');
+        if (!dropdown || window.innerWidth > 768) return;
+        e.preventDefault();
+        const abierto = item.classList.toggle('desplegado');
+        const chevron = this.querySelector('.fa-chevron-down');
+        if (chevron) chevron.style.transform = abierto ? 'rotate(180deg)' : '';
+      });
+    });
+
+    // ===== ANIMACIÓN AL HACER SCROLL =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.classList.contains('ayuda-panel--donaciones') ? 150 : 0;
+          setTimeout(() => entry.target.classList.add('av-visible'), delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.ayuda-panel').forEach(el => observer.observe(el));
+
+    // ===== DONACIONES: mostrar / ocultar bloques según tipo =====
+    document.querySelectorAll('input[name="tipo_donacion"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const val = radio.value;
+        const muestraEspecie   = val === 'especie'   || val === 'ambas';
+        const muestraEconomica = val === 'economica' || val === 'ambas';
+        document.getElementById('bloque-especie').style.display   = muestraEspecie   ? '' : 'none';
+        document.getElementById('bloque-economica').style.display = muestraEconomica ? '' : 'none';
+        // limpiar error de tipo si ya eligieron
+        document.getElementById('err-don-tipo').textContent = '';
+      });
+    });
+
+    // ===== MOTOR DE VALIDACIÓN =====
+    const AV_REGLAS = {
+      'vol-nombre':   { req: true,  label: 'Nombre completo' },
+      'vol-edad':     { req: true,  label: 'Edad',     numMin: 15, numMax: 90 },
+      'vol-telefono': { req: true,  label: 'Teléfono', digitos: true, minLen: 7, maxLen: 15 },
+      'vol-correo':   { req: true,  label: 'Correo electrónico', email: true },
+      'don-nombre':   { req: true,  label: 'Nombre o razón social' },
+      'don-telefono': { req: true,  label: 'Teléfono', digitos: true, minLen: 7, maxLen: 15 },
+      'don-correo':   { req: true,  label: 'Correo electrónico', email: true },
+    };
+
+    function avError(id, valor) {
+      const r = AV_REGLAS[id]; if (!r) return '';
+      const v = valor.trim();
+      if (r.req && !v) return `⚠ El campo "${r.label}" es obligatorio.`;
+      if (v) {
+        if (r.digitos && !/^[0-9]+$/.test(v))
+          return `⚠ "${r.label}" solo acepta números (sin letras ni símbolos).`;
+        if (r.digitos && v.length < r.minLen)
+          return `⚠ "${r.label}" debe tener al menos ${r.minLen} dígitos.`;
+        if (r.email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v))
+          return '⚠ El correo debe incluir "@" y un dominio válido (ej: nombre@correo.com).';
+        if (r.numMin !== undefined) {
+          const n = Number(v);
+          if (isNaN(n))     return `⚠ "${r.label}" debe ser un número válido.`;
+          if (n < r.numMin) return `⚠ La edad mínima es ${r.numMin} años.`;
+          if (n > r.numMax) return `⚠ La edad máxima es ${r.numMax} años.`;
+        }
+      }
+      return '';
+    }
+
+    function avMostrar(id, msg) {
+      const inp  = document.getElementById(id);
+      const span = document.getElementById('err-' + id);
+      if (!inp) return;
+      if (span) span.textContent = msg;
+      inp.classList.toggle('av-invalido', !!msg);
+      inp.classList.toggle('av-valido',   !msg && inp.value.trim() !== '');
+    }
+
+    function avValidar(id) {
+      const inp = document.getElementById(id); if (!inp) return true;
+      const err = avError(id, inp.value);
+      avMostrar(id, err); return !err;
+    }
+
+    function avValidarTodo(ids) {
+      let ok = true, primero = null;
+      ids.forEach(id => { const r = avValidar(id); if (!r && !primero) primero = id; ok = ok && r; });
+      if (primero) { const el = document.getElementById(primero); if (el) { el.focus(); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } }
+      return ok;
+    }
+
+    function avLimpiar(ids) {
+      ids.forEach(id => { avMostrar(id, ''); const el = document.getElementById(id); if (el) el.classList.remove('av-valido','av-invalido'); });
+    }
+
+    // Vincular eventos en tiempo real
+    Object.keys(AV_REGLAS).forEach(id => {
+      const inp = document.getElementById(id); if (!inp) return;
+      if (AV_REGLAS[id].digitos) {
+        inp.addEventListener('input', () => { inp.value = inp.value.replace(/[^0-9]/g, ''); });
+      }
+      inp.addEventListener('blur',  () => avValidar(id));
+      inp.addEventListener('input', () => { if (inp.classList.contains('av-invalido')) avValidar(id); });
+    });
+
+    const VOL_CAMPOS = ['vol-nombre','vol-edad','vol-telefono','vol-correo'];
+    const DON_CAMPOS = ['don-nombre','don-telefono','don-correo'];
+
+    // Formulario Voluntariado
+    const volForm   = document.getElementById('voluntariadoForm');
+    const volStatus = document.getElementById('voluntariadoStatus');
+    if (volForm) {
+      volForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const ok = avValidarTodo(VOL_CAMPOS);
+        if (!ok) {
+          volStatus.textContent = 'Corrige los campos marcados en rojo antes de enviar.';
+          volStatus.className = 'ayuda-form__status ayuda-form__status--err';
+          return;
+        }
+        volStatus.textContent = '✔ Tu solicitud de voluntariado fue enviada. ¡Gracias por querer ayudar!';
+        volStatus.className = 'ayuda-form__status ayuda-form__status--ok';
+        volForm.reset();
+        avLimpiar(VOL_CAMPOS);
+      });
+    }
+
+    // Formulario Donaciones
+    const donForm   = document.getElementById('donacionesForm');
+    const donStatus = document.getElementById('donacionesStatus');
+    if (donForm) {
+      donForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const ok = avValidarTodo(DON_CAMPOS);
+        // validar tipo de donación (radio)
+        const tipoElegido = donForm.querySelector('input[name="tipo_donacion"]:checked');
+        const errTipoSpan = document.getElementById('err-don-tipo');
+        if (!tipoElegido) {
+          if (errTipoSpan) errTipoSpan.textContent = '⚠ Selecciona al menos un tipo de donación.';
+          if (ok) { const el = document.querySelector('input[name="tipo_donacion"]'); if (el) el.focus(); }
+        } else {
+          if (errTipoSpan) errTipoSpan.textContent = '';
+        }
+        if (!ok || !tipoElegido) {
+          donStatus.textContent = 'Corrige los campos marcados en rojo antes de enviar.';
+          donStatus.className = 'ayuda-form__status ayuda-form__status--err';
+          return;
+        }
+        donStatus.textContent = '✔ Tu intención de donación fue registrada. ¡Gracias por tu generosidad!';
+        donStatus.className = 'ayuda-form__status ayuda-form__status--ok';
+        donForm.reset();
+        avLimpiar(DON_CAMPOS);
+        if (errTipoSpan) errTipoSpan.textContent = '';
+        document.getElementById('bloque-especie').style.display   = 'none';
+        document.getElementById('bloque-economica').style.display = 'none';
+      });
+    }
+  </script>
+</body>
+</html>

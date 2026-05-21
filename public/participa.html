@@ -1,0 +1,812 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Participa | Fundación Renacer Vida Feliz</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    /* ===== FORMULARIOS PARTICIPA ===== */
+    .participa-form {
+      margin-top: 28px;
+      background: #f7faf7;
+      border-radius: 14px;
+      padding: 28px 24px 20px;
+      border: 1.5px solid #c8e6c8;
+    }
+    .participa-form__title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--verde-oscuro, #1a6e1a);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .participa-form__section {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #237823;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin: 20px 0 10px;
+      padding-bottom: 4px;
+      border-bottom: 1.5px solid #c8e6c8;
+    }
+    .participa-form__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 18px;
+    }
+    @media (max-width: 600px) {
+      .participa-form__grid { grid-template-columns: 1fr; }
+    }
+    .participa-form__field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .participa-form__field--full {
+      grid-column: 1 / -1;
+    }
+    .participa-form__field label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2c5252;
+    }
+    .participa-form__field input,
+    .participa-form__field select,
+    .participa-form__field textarea {
+      border: 1.5px solid #b2d8b2;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #fff;
+      color: #333;
+      transition: border-color .2s;
+      outline: none;
+    }
+    .participa-form__field input:focus,
+    .participa-form__field select:focus,
+    .participa-form__field textarea:focus {
+      border-color: #1a6e1a;
+      box-shadow: 0 0 0 3px rgba(26,110,26,.1);
+    }
+    .participa-form__field textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .participa-form__checks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      margin-top: 4px;
+    }
+    .participa-form__checks label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+    }
+    .participa-form__checks input[type="checkbox"],
+    .participa-form__checks input[type="radio"] {
+      accent-color: #1a6e1a;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    .participa-form__actions {
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .participa-form__submit {
+      background: linear-gradient(135deg, #1a6e1a 0%, #237823 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 28px;
+      font-size: 1rem;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .22s, box-shadow .22s;
+      box-shadow: 0 4px 14px rgba(26,110,26,.22);
+    }
+    .participa-form__submit:hover {
+      background: linear-gradient(135deg, #145914 0%, #1a6e1a 100%);
+      box-shadow: 0 6px 20px rgba(26,110,26,.32);
+    }
+    .participa-form__status {
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .participa-form__status--success { color: #1a6e1a; }
+    .participa-form__status--error   { color: #c0392b; }
+
+    .field-error {
+      display: block;
+      color: #c0392b;
+      font-size: 0.79rem;
+      font-weight: 700;
+      margin-top: 4px;
+      min-height: 1.1em;
+      line-height: 1.3;
+    }
+    .participa-form__field input.campo-invalido,
+    .participa-form__field select.campo-invalido,
+    .participa-form__field textarea.campo-invalido {
+      border-color: #c0392b !important;
+      box-shadow: 0 0 0 3px rgba(192,57,43,.13);
+    }
+    .participa-form__field input.campo-valido,
+    .participa-form__field select.campo-valido,
+    .participa-form__field textarea.campo-valido {
+      border-color: #1a6e1a !important;
+      box-shadow: 0 0 0 3px rgba(26,110,26,.10);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-accent"></div>
+
+  <header class="top-bar">
+    <div class="top-bar__inner">
+      <a href="index.html" class="top-bar__logo" aria-label="Ir al inicio">
+        <img src="assets/images/logo.webp" alt="Logo Fundación Renacer Vida Feliz" />
+      </a>
+
+      <div class="top-bar__info">
+        <a href="participa.html#inscripcion" class="info-block">
+          <div class="info-block__icon">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <div class="info-block__text">
+            <span class="info-block__title">Únete</span>
+            <span class="info-block__sub">Haz parte de nuestra familia</span>
+          </div>
+        </a>
+
+        <a href="tel:+573053123384" class="info-block">
+          <div class="info-block__icon">
+            <i class="fa-solid fa-phone"></i>
+          </div>
+          <div class="info-block__text">
+            <span class="info-block__title">+57 305 312 3384</span>
+            <span class="info-block__sub">Llámanos ahora</span>
+          </div>
+        </a>
+
+        <a href="https://maps.google.com/?q=Comedor+Comunitario+Jerusalen+Canteras+Bogota" target="_blank" rel="noopener" class="info-block">
+          <div class="info-block__icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div class="info-block__text">
+            <span class="info-block__title">Comedor Comunitario Jerusalén Canteras</span>
+            <span class="info-block__sub">Bogotá, Colombia</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <div class="navbar__inner">
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="navbar__menu" id="navMenu">
+        <li class="nav-item">
+          <a href="index.html">
+            <i class="fa-solid fa-house"></i> Inicio
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="historia.html">
+            <i class="fa-solid fa-people-group"></i> Quiénes Somos
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <ul class="dropdown">
+            <li><a href="historia.html#historia"><i class="fa-solid fa-book-open"></i> Nuestra Historia</a></li>
+            <li><a href="historia.html#mision"><i class="fa-solid fa-bullseye"></i> Misión y Visión</a></li>
+            <li><a href="historia.html#reconocimientos"><i class="fa-solid fa-award"></i> Reconocimientos</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item activo">
+          <a href="#participa">
+            <i class="fa-solid fa-hand-holding-heart"></i> Participa
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <ul class="dropdown">
+            <li><a href="#inscripcion"><i class="fa-solid fa-file-signature"></i> Formulario de Inscripción</a></li>
+            <li><a href="#atencion"><i class="fa-solid fa-user-nurse"></i> Atención al Adulto Mayor</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="index.html#galeria">
+            <i class="fa-solid fa-star"></i> Actividades
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="historias.html">
+            <i class="fa-solid fa-heart"></i> Historias
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="ayudanos.html">
+            <i class="fa-solid fa-hands-holding-child"></i> Ayúdanos
+          </a>
+        </li>
+
+        <li class="nav-item nav-item--cta">
+          <a href="index.html#contacto">
+            <i class="fa-solid fa-envelope"></i> Contáctanos
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="participa-page" id="participa">
+    <section class="participa-page__hero">
+      <div class="participa-page__wrap">
+        <h1>Suma tu Apoyo a la Fundación</h1>
+        <p>Conoce cómo vincularte y acceder a nuestros servicios de acompañamiento integral.</p>
+      </div>
+    </section>
+
+    <section class="participa-page__content">
+      <div class="participa-page__wrap">
+        <header class="participa-page__head">
+          <h2>Formas de Participar</h2>
+          <p>Tenemos rutas de atención para personas mayores, familias y aliados comunitarios.</p>
+          <span class="participa-page__line"></span>
+        </header>
+
+        <article class="participa-card participa-card--inscripcion" id="inscripcion">
+          <h3><i class="fa-solid fa-file-signature"></i> Formulario de Inscripción</h3>
+          <p>
+            Realiza tu solicitud para iniciar el proceso de vinculación a nuestros programas sociales. Este
+            formulario nos ayuda a conocer mejor tus necesidades y a brindarte una atención más cercana.
+          </p>
+          <p>
+            Nuestro equipo revisa cada inscripción con respeto y confidencialidad, para orientar a cada persona
+            según su situación familiar, condiciones de salud y metas de bienestar.
+          </p>
+          <ul>
+            <li>Registro de datos básicos y contexto familiar.</li>
+            <li>Orientación sobre servicios disponibles.</li>
+            <li>Asignación de actividades según perfil e interés.</li>
+            <li>Validación de documentos para completar el proceso de ingreso.</li>
+            <li>Acompañamiento inicial para facilitar la adaptación al programa.</li>
+          </ul>
+          <form class="participa-form" id="inscripcionForm" action="#" method="post" novalidate>
+            <p class="participa-form__title"><i class="fa-solid fa-clipboard-list"></i> Completa tu solicitud de inscripción</p>
+
+            <p class="participa-form__section">Datos personales</p>
+            <div class="participa-form__grid">
+              <div class="participa-form__field">
+                <label for="ins-nombre">Nombre completo *</label>
+                <input id="ins-nombre" name="nombre" type="text" placeholder="Tu nombre completo" autocomplete="name" />
+                <span class="field-error" id="err-ins-nombre"></span>
+              </div>
+              <div class="participa-form__field">
+                <label for="ins-documento">Número de documento *</label>
+                <input id="ins-documento" name="documento" type="text" placeholder="Solo números (ej: 1020304050)" inputmode="numeric" maxlength="12" autocomplete="off" />
+                <span class="field-error" id="err-ins-documento"></span>
+              </div>
+              <div class="participa-form__field">
+                <label for="ins-nacimiento">Fecha de nacimiento *</label>
+                <input id="ins-nacimiento" name="nacimiento" type="date" min="1940-01-01" max="2010-12-31" />
+                <span class="field-error" id="err-ins-nacimiento"></span>
+              </div>
+              <div class="participa-form__field">
+                <label for="ins-genero">Género</label>
+                <select id="ins-genero" name="genero">
+                  <option value="">Selecciona...</option>
+                  <option>Femenino</option>
+                  <option>Masculino</option>
+                  <option>Otro / Prefiero no decir</option>
+                </select>
+              </div>
+            </div>
+
+            <p class="participa-form__section">Datos de contacto</p>
+            <div class="participa-form__grid">
+              <div class="participa-form__field">
+                <label for="ins-telefono">Teléfono / Celular * <small style="font-weight:400;color:#666">(solo números)</small></label>
+                <input id="ins-telefono" name="telefono" type="tel" placeholder="Ej: 3053123384" inputmode="numeric" maxlength="15" autocomplete="tel" />
+                <span class="field-error" id="err-ins-telefono"></span>
+              </div>
+              <div class="participa-form__field">
+                <label for="ins-correo">Correo electrónico</label>
+                <input id="ins-correo" name="correo" type="text" placeholder="tunombre@correo.com" inputmode="email" autocomplete="email" />
+                <span class="field-error" id="err-ins-correo"></span>
+              </div>
+              <div class="participa-form__field participa-form__field--full">
+                <label for="ins-direccion">Dirección y barrio *</label>
+                <input id="ins-direccion" name="direccion" type="text" placeholder="Calle, barrio, localidad" autocomplete="street-address" />
+                <span class="field-error" id="err-ins-direccion"></span>
+              </div>
+            </div>
+
+            <p class="participa-form__section">Programa de interés</p>
+            <div class="participa-form__checks">
+              <label><input type="checkbox" name="programa" value="alimentacion" /> Alimentación comunitaria</label>
+              <label><input type="checkbox" name="programa" value="integracion" /> Actividades de integración</label>
+              <label><input type="checkbox" name="programa" value="salud" /> Orientación en salud</label>
+            </div>
+
+            <p class="participa-form__section">Información de salud</p>
+            <div class="participa-form__grid">
+              <div class="participa-form__field participa-form__field--full">
+                <label for="ins-salud">¿Tiene alguna condición de salud relevante?</label>
+                <textarea id="ins-salud" name="salud" placeholder="Describa brevemente si aplica (enfermedades crónicas, movilidad reducida, etc.)"></textarea>
+              </div>
+              <div class="participa-form__field participa-form__field--full">
+                <label>¿Requiere acompañante o cuidador?</label>
+                <div class="participa-form__checks">
+                  <label><input type="radio" name="acompanante" value="si" /> Sí</label>
+                  <label><input type="radio" name="acompanante" value="no" /> No</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="participa-form__actions">
+              <button type="submit" class="participa-form__submit">
+                <i class="fa-solid fa-paper-plane"></i> Enviar inscripción
+              </button>
+              <p class="participa-form__status" id="inscripcionStatus" aria-live="polite"></p>
+            </div>
+          </form>
+        </article>
+
+        <article class="participa-card participa-card--atencion" id="atencion">
+          <h3><i class="fa-solid fa-user-nurse"></i> Atención al Adulto Mayor</h3>
+          <p>
+            Brindamos atención humana y continua para fortalecer bienestar físico, emocional y social. Nuestro
+            objetivo es que cada adulto mayor se sienta escuchado, valorado y acompañado en su día a día.
+          </p>
+          <p>
+            La atención contempla orientación personalizada, actividades de estimulación cognitiva, espacios de
+            integración y seguimiento permanente para promover hábitos saludables.
+          </p>
+          <p>
+            También articulamos acciones con familiares y cuidadores para construir una red de apoyo que mejore la
+            calidad de vida, prevenga el aislamiento y fortalezca la autonomía de cada participante.
+          </p>
+          <ul>
+            <li>Acompañamiento en hábitos de autocuidado.</li>
+            <li>Actividades de integración y participación activa.</li>
+            <li>Seguimiento para promover una vejez digna.</li>
+            <li>Orientación a familiares sobre cuidado integral y trato digno.</li>
+            <li>Canalización a servicios complementarios cuando sea necesario.</li>
+          </ul>
+          <form class="participa-form" id="atencionForm" action="#" method="post" novalidate>
+            <p class="participa-form__title"><i class="fa-solid fa-hand-holding-medical"></i> Solicitud de atención al adulto mayor</p>
+
+            <p class="participa-form__section">Datos del adulto mayor</p>
+            <div class="participa-form__grid">
+              <div class="participa-form__field">
+                <label for="at-nombre">Nombre completo *</label>
+                <input id="at-nombre" name="nombre_mayor" type="text" placeholder="Nombre del adulto mayor" autocomplete="name" />
+                <span class="field-error" id="err-at-nombre"></span>
+              </div>
+              <div class="participa-form__field">
+                <label for="at-edad">Edad *</label>
+                <input id="at-edad" name="edad" type="number" min="60" max="120" placeholder="Ej: 72" inputmode="numeric" />
+                <span class="field-error" id="err-at-edad"></span>
+              </div>
+              <div class="participa-form__field">
+                <label for="at-documento">Número de documento <small style="font-weight:400;color:#666">(solo números)</small></label>
+                <input id="at-documento" name="documento_mayor" type="text" placeholder="Solo números (ej: 1020304050)" inputmode="numeric" maxlength="12" autocomplete="off" />
+                <span class="field-error" id="err-at-documento"></span>
+              </div>
+              <div class="participa-form__field">
+                <label for="at-genero">Género</label>
+                <select id="at-genero" name="genero_mayor">
+                  <option value="">Selecciona...</option>
+                  <option>Femenino</option>
+                  <option>Masculino</option>
+                  <option>Otro / Prefiero no decir</option>
+                </select>
+              </div>
+            </div>
+
+            <p class="participa-form__section">Condición de salud y movilidad</p>
+            <div class="participa-form__grid">
+              <div class="participa-form__field">
+                <label for="at-movilidad">Nivel de movilidad</label>
+                <select id="at-movilidad" name="movilidad">
+                  <option value="">Selecciona...</option>
+                  <option>Autónomo (se moviliza solo)</option>
+                  <option>Semi-dependiente (requiere apoyo ocasional)</option>
+                  <option>Dependiente (requiere apoyo constante)</option>
+                  <option>Postrado / En cama</option>
+                </select>
+              </div>
+              <div class="participa-form__field">
+                <label for="at-direccion">Dirección de residencia *</label>
+                <input id="at-direccion" name="direccion" type="text" placeholder="Calle, barrio, localidad" autocomplete="street-address" />
+                <span class="field-error" id="err-at-direccion"></span>
+              </div>
+              <div class="participa-form__field participa-form__field--full">
+                <label for="at-salud">Condiciones de salud o diagnósticos relevantes</label>
+                <textarea id="at-salud" name="salud" placeholder="Ej: diabetes, hipertensión, demencia, dificultad visual..."></textarea>
+              </div>
+            </div>
+
+            <p class="participa-form__section">Datos del solicitante / Cuidador</p>
+            <div class="participa-form__grid">
+              <div class="participa-form__field">
+                <label for="at-cuidador">Nombre del cuidador o familiar *</label>
+                <input id="at-cuidador" name="cuidador" type="text" placeholder="Nombre completo" autocomplete="name" />
+                <span class="field-error" id="err-at-cuidador"></span>
+              </div>
+              <div class="participa-form__field">
+                <label for="at-parentesco">Parentesco o relación</label>
+                <select id="at-parentesco" name="parentesco">
+                  <option value="">Selecciona...</option>
+                  <option>Hijo/a</option>
+                  <option>Cónyuge / Pareja</option>
+                  <option>Nieto/a</option>
+                  <option>Hermano/a</option>
+                  <option>Cuidador/a profesional</option>
+                  <option>Vecino/a / Conocido/a</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="participa-form__field">
+                <label for="at-telefono">Teléfono de contacto * <small style="font-weight:400;color:#666">(solo números)</small></label>
+                <input id="at-telefono" name="telefono" type="tel" placeholder="Ej: 3053123384" inputmode="numeric" maxlength="15" autocomplete="tel" />
+                <span class="field-error" id="err-at-telefono"></span>
+              </div>
+              <div class="participa-form__field">
+                <label for="at-correo">Correo electrónico</label>
+                <input id="at-correo" name="correo" type="text" placeholder="tunombre@correo.com" inputmode="email" autocomplete="email" />
+                <span class="field-error" id="err-at-correo"></span>
+              </div>
+            </div>
+
+            <p class="participa-form__section">Tipo de atención requerida</p>
+            <div class="participa-form__checks">
+              <label><input type="checkbox" name="atencion_tipo" value="alimentacion" /> Alimentación</label>
+              <label><input type="checkbox" name="atencion_tipo" value="integracion" /> Integración social</label>
+              <label><input type="checkbox" name="atencion_tipo" value="salud" /> Orientación en salud</label>
+              <label><input type="checkbox" name="atencion_tipo" value="autocuidado" /> Hábitos de autocuidado</label>
+            </div>
+
+            <div class="participa-form__grid" style="margin-top:14px;">
+              <div class="participa-form__field participa-form__field--full">
+                <label for="at-observaciones">Observaciones adicionales</label>
+                <textarea id="at-observaciones" name="observaciones" placeholder="Cuéntanos cualquier información adicional que nos ayude a brindar una mejor atención..."></textarea>
+              </div>
+            </div>
+
+            <div class="participa-form__actions">
+              <button type="submit" class="participa-form__submit">
+                <i class="fa-solid fa-paper-plane"></i> Enviar solicitud
+              </button>
+              <p class="participa-form__status" id="atencionStatus" aria-live="polite"></p>
+            </div>
+          </form>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="social-float" aria-label="Canales de contacto rápido">
+    <a href="https://wa.me/573053123384" target="_blank" rel="noopener" class="social-float__btn social-float__btn--whatsapp" aria-label="Escribir por WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="https://www.facebook.com/share/1BfNWwnKjM/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-float__btn social-float__btn--facebook" aria-label="Ir a Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a href="mailto:furevf@hotmail.com" class="social-float__btn social-float__btn--mail" aria-label="Enviar correo electrónico">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__accent"></div>
+    <div class="footer__main">
+      <div class="footer__inner">
+        <div class="footer__col footer__col--brand">
+          <img src="assets/images/logo.webp" alt="Logo Fundación Renacer Vida Feliz" class="footer__logo" />
+          <p class="footer__desc">
+            Acompañamos a nuestros adultos mayores con amor, dignidad y alegría. Juntos construimos una vejez feliz en Bogotá.
+          </p>
+          <div class="footer__socials">
+            <a href="https://wa.me/573053123384" target="_blank" rel="noopener" class="social-btn social-btn--whatsapp" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>WhatsApp</span>
+            </a>
+            <a href="https://www.facebook.com/share/1BfNWwnKjM/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-btn social-btn--facebook" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+              <span>Facebook</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__title">
+            <i class="fa-solid fa-sitemap"></i> Navegación
+          </h4>
+          <ul class="footer__links">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Inicio</a></li>
+            <li><a href="historia.html"><i class="fa-solid fa-chevron-right"></i> Quiénes Somos</a></li>
+            <li><a href="#participa"><i class="fa-solid fa-chevron-right"></i> Participa</a></li>
+            <li><a href="index.html#galeria"><i class="fa-solid fa-chevron-right"></i> Actividades</a></li>
+            <li><a href="historias.html"><i class="fa-solid fa-chevron-right"></i> Historias</a></li>
+            <li><a href="index.html#contacto"><i class="fa-solid fa-chevron-right"></i> Contáctanos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__title">
+            <i class="fa-solid fa-address-book"></i> Contacto
+          </h4>
+          <ul class="footer__contact">
+            <li>
+              <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <span class="contact-label">Teléfonos</span>
+                <a href="tel:+573053123384">+57 305 312 3384</a>
+              </div>
+            </li>
+            <li>
+              <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <span class="contact-label">Correo electrónico</span>
+                <a href="mailto:furevf@hotmail.com">furevf@hotmail.com</a>
+              </div>
+            </li>
+            <li>
+              <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <span class="contact-label">Dirección</span>
+                <span>Comedor Comunitario Jerusalén Canteras</span>
+                <span>Bogotá, Colombia</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer__col footer__col--map">
+          <h4 class="footer__title">
+            <i class="fa-solid fa-map-location-dot"></i> Encuéntranos
+          </h4>
+          <div class="footer__map">
+            <iframe
+              src="https://maps.google.com/maps?q=Carrera+49D+%2368G-15+Sur,+Bogot%C3%A1,+Colombia&output=embed&z=16"
+              width="100%"
+              height="200"
+              style="border:0; border-radius: 12px;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación Fundación Renacer Vida Feliz">
+            </iframe>
+          </div>
+          <a href="https://maps.google.com/?q=Carrera+49D+68G-15+Sur,+Bogota,+Colombia" target="_blank" rel="noopener" class="footer__map-btn">
+            <i class="fa-solid fa-diamond-turn-right"></i> Cómo llegar
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__bottom-inner">
+        <p>© 2026 <strong>Fundación Renacer Vida Feliz</strong>. Todos los derechos reservados.</p>
+        <p>Hecho con <i class="fa-solid fa-heart" style="color:#4ade80"></i> para nuestros abuelos en Bogotá, Colombia.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+
+    toggle.addEventListener('click', () => {
+      const abierto = menu.classList.toggle('abierto');
+      toggle.setAttribute('aria-expanded', abierto);
+      toggle.querySelector('i').className = abierto ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    });
+
+    // ===== MOTOR DE VALIDACIÓN POR CAMPO =====
+    const REGLAS = {
+      'ins-nombre':     { requerido: true,  label: 'Nombre completo' },
+      'ins-documento':  { requerido: true,  label: 'Número de documento', soloDigitos: true, minLen: 5, maxLen: 12 },
+      'ins-nacimiento': { requerido: true,  label: 'Fecha de nacimiento', fechaMin: '1940-01-01', fechaMax: '2010-12-31' },
+      'ins-telefono':   { requerido: true,  label: 'Teléfono',            soloDigitos: true, minLen: 7, maxLen: 15 },
+      'ins-correo':     { requerido: false, label: 'Correo electrónico',  esEmail: true },
+      'ins-direccion':  { requerido: true,  label: 'Dirección' },
+      'at-nombre':      { requerido: true,  label: 'Nombre del adulto mayor' },
+      'at-edad':        { requerido: true,  label: 'Edad',                numMin: 60, numMax: 120 },
+      'at-documento':   { requerido: false, label: 'Número de documento', soloDigitos: true, minLen: 5, maxLen: 12 },
+      'at-direccion':   { requerido: true,  label: 'Dirección de residencia' },
+      'at-cuidador':    { requerido: true,  label: 'Nombre del cuidador o familiar' },
+      'at-telefono':    { requerido: true,  label: 'Teléfono de contacto', soloDigitos: true, minLen: 7, maxLen: 15 },
+      'at-correo':      { requerido: false, label: 'Correo electrónico',  esEmail: true },
+    };
+
+    function obtenerError(id, valor) {
+      const r = REGLAS[id];
+      if (!r) return '';
+      const val = valor.trim();
+
+      if (r.requerido && !val)
+        return `⚠ El campo "${r.label}" es obligatorio.`;
+
+      if (val) {
+        if (r.soloDigitos && !/^[0-9]+$/.test(val))
+          return `⚠ "${r.label}" solo acepta números (sin letras, espacios ni símbolos).`;
+        if (r.soloDigitos && r.minLen && val.length < r.minLen)
+          return `⚠ "${r.label}" debe tener al menos ${r.minLen} dígitos.`;
+        if (r.soloDigitos && r.maxLen && val.length > r.maxLen)
+          return `⚠ "${r.label}" no puede tener más de ${r.maxLen} dígitos.`;
+
+        if (r.esEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val))
+          return '⚠ El correo debe incluir "@" y un dominio válido (ej: nombre@correo.com).';
+
+        if (r.fechaMin || r.fechaMax) {
+          if (!val) return '';
+          const d   = new Date(val + 'T00:00:00');
+          const min = new Date(r.fechaMin + 'T00:00:00');
+          const max = new Date(r.fechaMax + 'T00:00:00');
+          if (isNaN(d.getTime()))  return '⚠ Ingresa una fecha válida.';
+          if (d < min) return '⚠ La fecha de nacimiento no puede ser anterior al 01/01/1940.';
+          if (d > max) return '⚠ La fecha de nacimiento no puede ser posterior al 31/12/2010.';
+        }
+
+        if (r.numMin !== undefined || r.numMax !== undefined) {
+          const n = Number(val);
+          if (isNaN(n))          return `⚠ "${r.label}" debe ser un número válido.`;
+          if (n < r.numMin)      return `⚠ La edad mínima aceptada es ${r.numMin} años.`;
+          if (n > r.numMax)      return `⚠ La edad máxima aceptada es ${r.numMax} años.`;
+        }
+      }
+      return '';
+    }
+
+    function mostrarError(id, mensaje) {
+      const input = document.getElementById(id);
+      const span  = document.getElementById('err-' + id);
+      if (!input) return;
+      if (span) span.textContent = mensaje;
+      if (mensaje) {
+        input.classList.add('campo-invalido');
+        input.classList.remove('campo-valido');
+      } else {
+        input.classList.remove('campo-invalido');
+        if (input.value.trim()) input.classList.add('campo-valido');
+        else input.classList.remove('campo-valido');
+      }
+    }
+
+    function validarCampo(id) {
+      const input = document.getElementById(id);
+      if (!input) return true;
+      const err = obtenerError(id, input.value);
+      mostrarError(id, err);
+      return !err;
+    }
+
+    function validarFormulario(campoIds) {
+      let todo_ok = true;
+      let primerError = null;
+      campoIds.forEach(id => {
+        const ok = validarCampo(id);
+        if (!ok && !primerError) primerError = id;
+        todo_ok = todo_ok && ok;
+      });
+      if (primerError) {
+        const el = document.getElementById(primerError);
+        if (el) { el.focus(); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      }
+      return todo_ok;
+    }
+
+    function limpiarFormulario(campoIds) {
+      campoIds.forEach(id => {
+        mostrarError(id, '');
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('campo-valido', 'campo-invalido');
+      });
+    }
+
+    // Vincular validación en tiempo real a cada campo
+    Object.keys(REGLAS).forEach(id => {
+      const input = document.getElementById(id);
+      if (!input) return;
+      // Bloquear caracteres no numéricos en campos de solo dígitos
+      if (REGLAS[id].soloDigitos) {
+        input.addEventListener('input', () => {
+          const pos = input.selectionStart;
+          const limpio = input.value.replace(/[^0-9]/g, '');
+          if (limpio !== input.value) input.value = limpio;
+        });
+      }
+      // Al salir del campo: validar
+      input.addEventListener('blur', () => validarCampo(id));
+      // Al escribir: limpiar error si ya era inválido y ahora es válido
+      input.addEventListener('input', () => {
+        if (input.classList.contains('campo-invalido')) validarCampo(id);
+      });
+    });
+
+    const INS_CAMPOS = ['ins-nombre','ins-documento','ins-nacimiento','ins-telefono','ins-correo','ins-direccion'];
+    const AT_CAMPOS  = ['at-nombre','at-edad','at-documento','at-direccion','at-cuidador','at-telefono','at-correo'];
+
+    // Formulario de Inscripción
+    const inscripcionForm   = document.getElementById('inscripcionForm');
+    const inscripcionStatus = document.getElementById('inscripcionStatus');
+    if (inscripcionForm && inscripcionStatus) {
+      inscripcionForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const ok = validarFormulario(INS_CAMPOS);
+        if (!ok) {
+          inscripcionStatus.textContent = 'Revisa y corrige los campos marcados en rojo antes de enviar.';
+          inscripcionStatus.className = 'participa-form__status participa-form__status--error';
+          return;
+        }
+        inscripcionStatus.textContent = '✔ Tu solicitud de inscripción fue enviada correctamente. Te contactaremos pronto.';
+        inscripcionStatus.className = 'participa-form__status participa-form__status--success';
+        inscripcionForm.reset();
+        limpiarFormulario(INS_CAMPOS);
+      });
+    }
+
+    // Formulario de Atención al Adulto Mayor
+    const atencionForm   = document.getElementById('atencionForm');
+    const atencionStatus = document.getElementById('atencionStatus');
+    if (atencionForm && atencionStatus) {
+      atencionForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const ok = validarFormulario(AT_CAMPOS);
+        if (!ok) {
+          atencionStatus.textContent = 'Revisa y corrige los campos marcados en rojo antes de enviar.';
+          atencionStatus.className = 'participa-form__status participa-form__status--error';
+          return;
+        }
+        atencionStatus.textContent = '✔ Tu solicitud de atención fue enviada correctamente. Nuestro equipo la revisará a la brevedad.';
+        atencionStatus.className = 'participa-form__status participa-form__status--success';
+        atencionForm.reset();
+        limpiarFormulario(AT_CAMPOS);
+      });
+    }
+
+    document.querySelectorAll('.nav-item > a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const item = this.closest('.nav-item');
+        const dropdown = item.querySelector('.dropdown');
+        if (!dropdown || window.innerWidth > 768) return;
+        e.preventDefault();
+        const abierto = item.classList.toggle('desplegado');
+        const chevron = this.querySelector('.fa-chevron-down');
+        if (chevron) chevron.style.transform = abierto ? 'rotate(180deg)' : '';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 {
-  "name": "ecommerce-api-roles",
+  "name": "api-fundacion-renacer",
   "version": "1.0.0",
-  "description": "API eCommerce Node.js + Express con POO, apiKey, roles admin/client y persistencia JSON.",
+  "description": "API REST para la Fundación Renacer Vida Feliz. Node.js + Express con POO, apiKey, roles admin/cliente y persistencia en archivos JSON.",
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server.js",
