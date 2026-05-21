@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "id": "c1a2b3d4-0001-4e5f-a678-contacto00001",
+    "nombre": "Laura Martínez Gómez",
+    "correo": "laura.martinez@gmail.com",
+    "telefono": "3101234567",
+    "asunto": "Información sobre programas para adultos mayores",
+    "mensaje": "Buenas tardes, me gustaría saber qué programas tienen disponibles para adultos mayores de 70 años. Mi madre vive sola y necesita compañía y actividades recreativas. ¿Podrían enviarme más información?",
+    "createdAt": "2025-04-10T14:32:00.000Z"
+  },
+  {
+    "id": "c1a2b3d4-0002-4e5f-a678-contacto00002",
+    "nombre": "Carlos Andrade Peña",
+    "correo": "c.andrade.p@hotmail.com",
+    "telefono": "3157654321",
+    "asunto": "¿Cómo puedo hacer una donación?",
+    "mensaje": "Hola, trabajo en una empresa y queremos hacer una donación de víveres y ropa para la fundación. ¿Cuál es el proceso y a qué dirección nos dirigimos?",
+    "createdAt": "2025-04-15T09:18:00.000Z"
+  },
+  {
+    "id": "c1a2b3d4-0003-4e5f-a678-contacto00003",
+    "nombre": "Patricia Salcedo",
+    "correo": "patriciasalcedo82@yahoo.com",
+    "telefono": "3004561234",
+    "asunto": "Voluntariado los fines de semana",
+    "mensaje": "Soy enfermera y tengo disponibilidad los sábados y domingos. Me interesa participar como voluntaria en actividades de salud o cuidado con los abuelitos. ¿Cómo puedo inscribirme?",
+    "createdAt": "2025-05-02T11:45:00.000Z"
+  }
+]

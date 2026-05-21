@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "id": "i1a2b3c4-0001-4e5f-a678-inscripcion01",
+    "tipo": "inscripcion",
+    "nombre": "Rosa Elena Vargas",
+    "documento": "24567890",
+    "nacimiento": "1952-06-14",
+    "genero": "femenino",
+    "telefono": "3105556677",
+    "correo": "rosavargas52@gmail.com",
+    "direccion": "Cra 15 # 42-10, Bogotá",
+    "programas": ["taller_manualidades", "taller_musica"],
+    "salud": "Hipertensión controlada, sin limitación motriz",
+    "acompanante": "Hija: Luisa Vargas - 3112223344",
+    "createdAt": "2025-01-18T10:30:00.000Z"
+  },
+  {
+    "id": "i1a2b3c4-0002-4e5f-a678-inscripcion02",
+    "tipo": "inscripcion",
+    "nombre": "Ernesto Gutiérrez Díaz",
+    "documento": "8765432",
+    "nacimiento": "1948-11-03",
+    "genero": "masculino",
+    "telefono": "3209998877",
+    "correo": "",
+    "direccion": "Calle 80 # 22-55 Apto 301, Bogotá",
+    "programas": ["taller_ejercicio"],
+    "salud": "Diabetes tipo 2, movilidad reducida en rodilla derecha",
+    "acompanante": "Hijo: Jorge Gutiérrez - 3001234567",
+    "createdAt": "2025-02-25T14:00:00.000Z"
+  },
+  {
+    "id": "i1a2b3c4-0003-4e5f-a678-atencion00001",
+    "tipo": "atencion",
+    "nombre_mayor": "Inés Rocío Peláez",
+    "edad": "79",
+    "documento_mayor": "31456789",
+    "genero_mayor": "femenino",
+    "movilidad": "silla_de_ruedas",
+    "direccion": "Calle 50 # 10-20, Medellín",
+    "salud": "Demencia leve, hipertensión y artritis severa en manos",
+    "cuidador": "Miguel Peláez Arango",
+    "parentesco": "hijo",
+    "telefono": "3123334455",
+    "correo": "mpelaez.cuidador@gmail.com",
+    "atencion_tipo": ["visita_domiciliaria", "orientacion_familiar"],
+    "observaciones": "Requiere atención en horario matutino, preferiblemente antes de las 10am.",
+    "createdAt": "2025-03-12T08:15:00.000Z"
+  }
+]

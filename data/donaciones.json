@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": "d1a2b3c4-0001-4e5f-a678-donacion00001",
+    "nombre": "Empresa Textiles El Sol S.A.S.",
+    "telefono": "6014567890",
+    "correo": "donaciones@textileselsol.com",
+    "tipo_donacion": "especie",
+    "descripcion_especie": "50 mudas de ropa interior, 30 cobijas y 20 pares de zapatos talla variada para adultos mayores",
+    "monto": "",
+    "createdAt": "2025-02-14T13:00:00.000Z"
+  },
+  {
+    "id": "d1a2b3c4-0002-4e5f-a678-donacion00002",
+    "nombre": "Ramiro Herrera Bustamante",
+    "telefono": "3178889900",
+    "correo": "ramiro.herrera@gmail.com",
+    "tipo_donacion": "economica",
+    "descripcion_especie": "",
+    "monto": "200000",
+    "createdAt": "2025-03-01T09:45:00.000Z"
+  },
+  {
+    "id": "d1a2b3c4-0003-4e5f-a678-donacion00003",
+    "nombre": "Claudia Viviana Ospina",
+    "telefono": "3144556677",
+    "correo": "cvospina@hotmail.com",
+    "tipo_donacion": "ambas",
+    "descripcion_especie": "Pañales para adulto, cremas hidratantes y medicamentos básicos sin prescripción",
+    "monto": "50000",
+    "createdAt": "2025-04-22T15:20:00.000Z"
+  }
+]
